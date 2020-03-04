@@ -1,11 +1,13 @@
 import Vue from 'vue/dist/vue.js'
-import totalList from '@/resources/static/test/total-list.js'
+import totalList from '@/test/resources/static/test/total-list.js'
 import "./requireDataList.css"
-import broadcastList from './broadcast-list.js.js'
-import ChinaMap from '@/resources/static/test/map.vue'
+import broadcastList from '@/test/resources/static/test//broadcast-list.js'
+import ChinaMap from '@/test/resources/static/test/map.vue'
 
+console.log(totalList)
 //中国的全部数据
 var chinaList=totalList.data.areaTree[0]
+console.log(chinaList)
 //各个省份的数据
 var provinceList=chinaList.children
 console.log(provinceList)

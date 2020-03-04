@@ -7,7 +7,7 @@
 <script>
 import Vue from 'vue/dist/vue.js'
 import echarts from 'echarts'
-import '@/resources/static/js/china.js'
+import '@/main/resources/static/js/china.js'
 export default
 {
     name: "chinaMap",
