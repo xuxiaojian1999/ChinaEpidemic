@@ -1,0 +1,11 @@
+
+/* #chinaData{
+    height: 100%;
+} */
+.myContainer{
+    height:80%;
+}
+.contentBody{
+    display: flex; 
+    padding: 5px 10px;
+}

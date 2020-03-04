@@ -6,8 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="chinaData">
-        
+    <div id="chinaData" >
+        <!-- <broadcastlist></broadcastlist> -->
+        <!-- 头部 -->
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            <h1>我的第一个 Bootstrap 页面</h1>
+            <p>重置浏览器窗口大小查看效果！</p> 
+          </div>
+
+          <!-- 主体 -->
+          <div class="container myContainer">
+            <ul class="nav nav-pills nav-justified">
+                <li class="active"><router-link to="/chinaData" tag="a">疫情地图</router-link></li>
+                <li class="active"><router-link to="/broadcast" tag="a">实时播报</router-link></li>
+            </ul>
+            <router-view class="contentBody"></router-view>
+          </div>
+
+        <!-- 底部 -->
+        <div class="jumbotron text-center" style="margin-bottom:0">
+            <p>底部内容</p>
+        </div>
+
     </div>
 </body>
 </html>
