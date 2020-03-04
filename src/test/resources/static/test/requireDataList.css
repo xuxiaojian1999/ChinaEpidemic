@@ -1,0 +1,17 @@
+ul,li{
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 5px 5px;
+}
+
+.provinceDiv{
+    width: 100%;
+    display: flex;
+}
+span{
+   flex: 1;
+}
+li:nth-of-type(odd){
+    background-color: #efefef;
+}

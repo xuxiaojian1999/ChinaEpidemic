@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <chinamap></chinamap>
+    
+        <hr/>
+        <div class="provinceList">
+            <ul>
+                <li>
+                    <div class="provinceDiv">
+                        <span>省份</span>
+                        <span>确诊</span>
+                        <span>疑似</span>
+                        <span>治愈</span>
+                        <span>死亡</span>
+                    </div>
+                </li>
+                    <li  v-for="(item,index) in provinceObj">
+                        <div  key="index" class="provinceDiv">
+                            <span>{{index}}</span>
+                            <span>{{item.confirm}}</span>
+                            <span>{{item.suspect}}</span>
+                            <span>{{item.heal}}</span>
+                            <span>{{item.dead}}</span>
+                        </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
