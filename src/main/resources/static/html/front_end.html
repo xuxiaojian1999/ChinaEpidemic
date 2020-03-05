@@ -9,25 +9,28 @@
     <div id="chinaData" >
         <!-- <broadcastlist></broadcastlist> -->
         <!-- 头部 -->
-        <div class="jumbotron text-center" style="margin-bottom:0">
-            <h1>我的第一个 Bootstrap 页面</h1>
-            <p>重置浏览器窗口大小查看效果！</p> 
+        <div class="jumbotron text-center myHead" style="margin-bottom:0">
+            <h1 class="myHeadText">中国<span class="display-4">加油！</span> 武汉<span class="display-4">加油！</span></h1>
           </div>
 
           <!-- 主体 -->
           <div class="container myContainer">
-            <ul class="nav nav-pills nav-justified">
+            <!-- <ul class="nav nav-pills nav-justified myNav">
                 <li class="active"><router-link to="/chinaData" tag="a">疫情地图</router-link></li>
-                <li class="active"><router-link to="/broadcast" tag="a">实时播报</router-link></li>
-            </ul>
+                <li ><router-link to="/broadcast" tag="a">实时播报</router-link></li>
+            </ul> -->
+            <div class="row"> 
+               <router-link to="/chinaData" tag="span" class="col"> <div class="myNavText">疫情地图</div></router-link>
+                <router-link to="/broadcast" tag="span" class="col"><div class=" myNavText"> 实时播报</div></router-link>
+            </div>
             <router-view class="contentBody"></router-view>
           </div>
 
         <!-- 底部 -->
-        <div class="jumbotron text-center" style="margin-bottom:0">
-            <p>底部内容</p>
+        <div class=" jumbotron  text-center myFooter" style="margin-bottom:0">
+            <p class="myFooterText">这里是底线</p>
         </div>
-
+        
     </div>
 </body>
 </html>

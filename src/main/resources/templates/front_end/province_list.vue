@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// 每个省份区内的数据显示https://www.runoob.com/bootstrap4/bootstrap4-collapse.html
 export default {
 
 }
