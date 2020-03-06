@@ -21,7 +21,9 @@ var router=new VueRouter({
 })
 var vm=new Vue({
     el:"#chinaData",
-    data:{},
+    data:{
+        
+    },
     methods:{},
     components:{
         broadcastlist,chinadata

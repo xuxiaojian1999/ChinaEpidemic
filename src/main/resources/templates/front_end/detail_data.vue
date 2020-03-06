@@ -50,31 +50,32 @@ export default {
   data(){
     return {
       //省份或城市
-      local:{
-        prevince:"省份",
-        city:"城市",
-        country:null
-      },
-      //全部数据
-      totalData:{
-        totalConfirm:'累计确诊',
-        //需要经过计算得到
-        confirm:'现存确诊',
-        suspect:'现存疑似',
-        dead:'累计死亡',
-        heal:'累计治愈'
-      },
-      //新增数据
-      incrData:{
-        totalConfirm:'+1',
-        //需要经过计算得到
-        confirm:'+1',
-        suspect:'+1',
-        dead:'+1',
-        heal:'+1'
-      }
+      // local:{
+      //   prevince:"省份",
+      //   city:"城市",
+      //   country:null
+      // },
+      // //全部数据
+      // totalData:{
+      //   totalConfirm:'累计确诊',
+      //   //需要经过计算得到
+      //   confirm:'现存确诊',
+      //   suspect:'现存疑似',
+      //   dead:'累计死亡',
+      //   heal:'累计治愈'
+      // },
+      // //新增数据
+      // incrData:{
+      //   totalConfirm:'+1',
+      //   //需要经过计算得到
+      //   confirm:'+1',
+      //   suspect:'+1',
+      //   dead:'+1',
+      //   heal:'+1'
+      // }
     }
-  }
+  },
+  props:['local','totalData','incrData']
 }
 
 </script>

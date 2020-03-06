@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Vue from 'vue/dist/vue.js'
 import echarts from 'echarts'
 import '@/main/resources/static/js/china.js'
 export default
