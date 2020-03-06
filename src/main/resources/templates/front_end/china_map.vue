@@ -1,4 +1,5 @@
 //中国疫情地图
+//需要传入dataList
 <template>
    <div class="echarts">
         <div :style="{height:'400px',width:'100%'}" ref="chinaMap"></div>

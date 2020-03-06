@@ -1,4 +1,5 @@
 // 事实播报
+//需要传入broadcastList
 <template>
   <div>
   

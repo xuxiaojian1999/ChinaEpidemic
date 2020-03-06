@@ -1,4 +1,5 @@
 //各个省份列表
+//需要传递previnceList
 <template>
   <div>
     <table class="table table-bordered  table-hover myTable">
@@ -39,10 +40,7 @@ export default {
   methods:{
 
   },
-  props:['previnceList'],
-  mounted(){
-    console.log(this.previnceList)
-  }
+  props:['previnceList']
 }
 </script>
 <style scoped>

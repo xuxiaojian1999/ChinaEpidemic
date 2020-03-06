@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import broadcastlist from '@/main/resources/templates/front_end/broadcast_list.vue'
 //中国疫情数据组件
 import chinadata from '@/main/resources/templates/front_end/china_data.vue'
+//单个省份数据组件
+import previncedata from '@/main/resources/templates/front_end/prevince_data.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'jquery/dist/jquery.js'
 import 'bootstrap/dist/js/bootstrap.js'
@@ -16,6 +18,7 @@ var router=new VueRouter({
     routes:[
         {path:'/broadcast',component:broadcastlist},
         {path:'/chinaData',component:chinadata},
+        {path:'/previnceData',component:previncedata},
         {path:'/',redirect:'/chinaData'}
     ]
 })
@@ -27,7 +30,7 @@ var vm=new Vue({
     },
     methods:{},
     components:{
-        broadcastlist,chinadata
+        broadcastlist,chinadata,previncedata
     },
     router:router,
     

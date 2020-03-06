@@ -1,6 +1,8 @@
+//全国疫情
+//需要传入很多数据
 <template>
   <div>
-      <detaildata :local="local" :totalData="totalData" :incrData="incrData"></detaildata>
+      <detaildata :local="local" :totalData="totalData" :todayData="todayData"></detaildata>
       <chinamap class="chinaMap" :dataList="comfirmList"></chinamap>
       <provincclist :previnceList="previnceList"></provincclist>
   </div>
@@ -11,8 +13,6 @@ import detaildata from '@/main/resources/templates/front_end/detail_data.vue'
 import chinamap from '@/main/resources/templates/front_end/china_map.vue'
 import provincclist from '@/main/resources/templates/front_end/province_list.vue'
 import totalList from '@/test/resources/static/test/total-list.js'
-console.log(totalList)
-
 
 export default {
     data(){
@@ -30,15 +30,14 @@ export default {
         },
         //全部数据
         totalData:{
-            totalConfirm:'累计确诊',
-            //需要经过计算得到
-            confirm:'现存确诊',
+            //现存确诊需要经过计算得到
+            confirm:'累计确诊',
             suspect:'现存疑似',
             dead:'累计死亡',
             heal:'累计治愈'
         },
         //新增数据
-        incrData:{
+        todayData:{
             totalConfirm:'+1',
             //需要经过计算得到
             confirm:'+1',
@@ -113,7 +112,6 @@ export default {
                 dead:element.total.dead}
                 this.previnceList.push(item)
             });
-            console.log(this.previnceList)
         }
     },
     components:{
