@@ -44,9 +44,8 @@ export default {
     methods:{
       //获取全部列表信息
         getBroadList(){
-          // 这里异步请求后端，获取broadcastList
-          //目前通过。js文件获取
-            //循环.js文件里的数据
+          // ！！！！！！！这里异步请求后端，获取broadcastList！！！！！！
+          //目前通过.js文件获取
         broadcastList.data.items.forEach(element => {
           this.broadcastList.push({releaseTime:element.ptime,disgest:element.digest,title:element.title,source:element.source})
         });
@@ -65,7 +64,6 @@ export default {
         }
     },
     beforeMount(){
-      //实现懒加载
        this.getBroadList()
        this.pushToShowList()
     },
@@ -164,7 +162,7 @@ h1{
   font-weight: 100;
   font-size: 1px;
 }
-/* 懒加载 */
+/* 伪懒加载 */
 .lazyDown{
   background-color: #edfff2;
   border-radius: 5px;

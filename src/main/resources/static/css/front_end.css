@@ -2,7 +2,10 @@
 	margin:0px;
     padding: 0px;
 }
-
+/* 防止闪烁 */
+[v-cloak]{
+    display: none;
+}
 body{
     height: 100%;
     width: 100%;
@@ -12,6 +15,7 @@ body{
     height: 20px;
 }
 .myHeadText{
+    margin-top: -20px;
     font-size: 38px;
 }
 /* 主体 */
