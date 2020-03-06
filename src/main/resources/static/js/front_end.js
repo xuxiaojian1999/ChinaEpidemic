@@ -19,6 +19,7 @@ var router=new VueRouter({
         {path:'/',redirect:'/chinaData'}
     ]
 })
+
 var vm=new Vue({
     el:"#chinaData",
     data:{

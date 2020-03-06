@@ -2,12 +2,18 @@
   <div>
       <detaildata :local="local" :totalData="totalData" :incrData="incrData"></detaildata>
       <chinamap class="chinaMap" :dataList="comfirmList"></chinamap>
+      <provincclist :previnceList="previnceList"></provincclist>
   </div>
 </template>
 
 <script>
 import detaildata from '@/main/resources/templates/front_end/detail_data.vue'
 import chinamap from '@/main/resources/templates/front_end/china_map.vue'
+import provincclist from '@/main/resources/templates/front_end/province_list.vue'
+import totalList from '@/test/resources/static/test/total-list.js'
+console.log(totalList)
+
+
 export default {
     data(){
         return{
@@ -81,17 +87,40 @@ export default {
             {name: '台湾', value: this.randomValue()},
             {name: '香港', value: this.randomValue()},
             {name: '澳门', value: this.randomValue()}
-        ]
+        ],
+        //中国各省份的数据
+        previnceList:[]
         }
     },
     methods:{
         //随机数0-1000
-            randomValue() {
-                return Math.round(Math.random()*100000);
-            }
+        randomValue() {
+            return Math.round(Math.random()*100000);
+        },
+        //获取中国各省份的数据
+        // !!!!!!!!!!!需要读取
+        // 各省数据
+        //Key：province_data:省份名称
+        //目前使用.js文件中的数据代替
+        getPrevinceList(){
+            var previnceList=totalList.data.areaTree[0].children
+            previnceList.forEach(element => {
+                var item={
+                    region:element.name,
+                totalConfirm:element.total.confirm,
+                suspect:element.total.suspect,
+                heal:element.total.heal,
+                dead:element.total.dead}
+                this.previnceList.push(item)
+            });
+            console.log(this.previnceList)
+        }
     },
     components:{
-        detaildata,chinamap
+        detaildata,chinamap,provincclist
+    },
+    beforeMount(){
+        this.getPrevinceList()
     }
 }
 

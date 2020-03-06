@@ -48,9 +48,6 @@ body{
     margin-bottom: -20%;
     height: 6%;
 }
-.myFooterText{
+.font-weight-light{
     height: 5px;
-    font-size: 2px;
-    font-style: unset;
-    color: teal;
 }

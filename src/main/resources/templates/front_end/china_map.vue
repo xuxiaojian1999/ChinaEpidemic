@@ -103,7 +103,11 @@ export default
 
 <style>
 .echarts{
-    width:100%
+    width:100%;
+    border:rgb(175, 175, 175) solid 1px;
+    border-radius:16px;
+    margin: 5px 0;
+    padding: 5px 50px;
+    overflow: hidden;
 }
-
 </style>

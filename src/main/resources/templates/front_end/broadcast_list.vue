@@ -139,6 +139,7 @@ h1{
 /* 列表内容 */
 /* 时间 */
 .time{
+  height: 13px;
   font-size: 5px;
 }
 /* 内容 */
