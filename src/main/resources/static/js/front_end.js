@@ -16,10 +16,6 @@ var router=new VueRouter({
         {path:'/',redirect:'/chinaData'}
     ]
 })
-/*
-1.搭建路由
-2.调好事实播报组件
-*/
 var vm=new Vue({
     el:"#chinaData",
     data:{},

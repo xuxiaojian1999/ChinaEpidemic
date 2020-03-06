@@ -6,7 +6,7 @@
     <div class="broadcastContent">
       <div class="line"></div>
       <div class="broadcastList" >
-          <div class="broadcastListItem" v-for="(i,index) in broadcastList" :key="index">
+          <div class="broadcastListItem" v-for="(i,index) in showList" :key="index">
             <div class="time font-weight-light">
                 {{i.releaseTime}}
             </div>
@@ -17,7 +17,7 @@
             <div class="source text-right"><span>来源</span>：{{i.source}}</div>
           </div>
           <div>
-            <p class="lazyDown text-center">加载更多····</p>
+            <p class="lazyDown text-center" @click="pushToShowList" v-text="lazyTip"></p>
           </div>
       </div>
     </div>
@@ -33,28 +33,44 @@ export default {
     name:"broadcast",
     data(){
       return{
-        broadcastList:[
-          {releaseTime:new Date(),disgest:"详情详情详情详情详情详情详情详aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssss情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssssssssaaaaa详情详情详情详情详情详情详情详情详情详情详情详情详情详情",title:"标题",source:"来源"},
-          {releaseTime:new Date(),disgest:"详情",title:"标题",source:"来源"},
-          {releaseTime:new Date(),disgest:"详情",title:"标题",source:"来源"},
-          {releaseTime:new Date(),disgest:"详情",title:"标题",source:"来源"}
-        ]
+        broadcastList:[],
+        showList:[],
+        //broadcastList加入到showList中的一个索引
+        index:0,
+        lazyTip:'加载更多····'
       }
     },
     //除了methods都是方法
     methods:{
+      //获取全部列表信息
         getBroadList(){
-           
+          // 这里异步请求后端，获取broadcastList
+          //目前通过。js文件获取
+            //循环.js文件里的数据
+        broadcastList.data.items.forEach(element => {
+          this.broadcastList.push({releaseTime:element.ptime,disgest:element.digest,title:element.title,source:element.source})
+        });
+        },
+        //设置展示的列表信息
+        pushToShowList(){
+          for(var i=0;i<10;i++){
+            if(this.broadcastList[this.index]==null){
+              this.lazyTip="已经是全部了！"
+              break
+            }
+              this.showList.push(this.broadcastList[this.index])
+              delete this.broadcastList[this.index]
+              this.index++
+          }
         }
     },
     beforeMount(){
-      // 这里异步请求后端，获取broadcastList
-      //目前通过。json文件获取
-       console.log(broadcastList)
-      
+      //实现懒加载
+       this.getBroadList()
+       this.pushToShowList()
     },
     mounted(){
-      //getBroadList()
+      
     }
 }
 
@@ -91,7 +107,7 @@ h1{
 }
 .broadcastList .broadcastListItem{
   border-radius: 5px;
-  background-color: #aebfd4;
+  background-color: #edfff2;
   margin: 10px 2px;
   padding: 8px 10px;
   width: 100%;
@@ -105,7 +121,7 @@ h1{
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid transparent;
-  border-right: 10px solid #aebfd4;
+  border-right: 10px solid #edfff2;
   position: absolute;
   top: 0px;
   left: -17px;
@@ -150,7 +166,7 @@ h1{
 }
 /* 懒加载 */
 .lazyDown{
-  background-color: #aebfd4;
+  background-color: #edfff2;
   border-radius: 5px;
    cursor:pointer ;
 }
