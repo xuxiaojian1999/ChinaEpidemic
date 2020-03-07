@@ -5,12 +5,14 @@ import broadcastlist from '@/main/resources/templates/front_end/broadcast_list.v
 //中国疫情数据组件
 import chinadata from '@/main/resources/templates/front_end/china_data.vue'
 //单个省份数据组件
-import previncedata from '@/main/resources/templates/front_end/prevince_data.vue'
+import provincedata from '@/main/resources/templates/front_end/province_data.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'jquery/dist/jquery.js'
 import 'bootstrap/dist/js/bootstrap.js'
 //引入自定义css
 import '@/main/resources/static/css/front_end.css'
+//导入animate.css
+import 'animate.css'
 // 启用路由
 Vue.use(VueRouter)
 //定义路由对象
@@ -18,7 +20,7 @@ var router=new VueRouter({
     routes:[
         {path:'/broadcast',component:broadcastlist},
         {path:'/chinaData',component:chinadata},
-        {path:'/previnceData',component:previncedata},
+        {path:'/provinceData',component:provincedata},
         {path:'/',redirect:'/chinaData'}
     ]
 })
@@ -30,7 +32,7 @@ var vm=new Vue({
     },
     methods:{},
     components:{
-        broadcastlist,chinadata,previncedata
+        broadcastlist,chinadata,provincedata
     },
     router:router,
     

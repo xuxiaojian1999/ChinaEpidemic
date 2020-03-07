@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="i in previnceList" :key="i.region">
+      <tr v-for="i in provinceList" :key="i.region">
         <td>{{i.region}}</td>
         <td>{{i.totalConfirm-i.heal-i.dead}}</td>
         <td>{{i.totalConfirm}}</td>
@@ -40,7 +40,7 @@ export default {
   methods:{
 
   },
-  props:['previnceList']
+  props:['provinceList']
 }
 </script>
 <style scoped>

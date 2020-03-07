@@ -4,7 +4,7 @@
   <div>
       <detaildata :local="local" :totalData="totalData" :todayData="todayData"></detaildata>
       <chinamap class="chinaMap" :dataList="comfirmList"></chinamap>
-      <provincclist :previnceList="previnceList"></provincclist>
+      <provincclist :provinceList="provinceList"></provincclist>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
         // 中国数据
         // Key:china_data
         local:{
-            prevince:null,
+            province:null,
             city:null,
             country:'中国'
         },
@@ -88,7 +88,7 @@ export default {
             {name: '澳门', value: this.randomValue()}
         ],
         //中国各省份的数据
-        previnceList:[]
+        provinceList:[]
         }
     },
     methods:{
@@ -101,16 +101,16 @@ export default {
         // 各省数据
         //Key：province_data:省份名称
         //目前使用.js文件中的数据代替
-        getPrevinceList(){
-            var previnceList=totalList.data.areaTree[0].children
-            previnceList.forEach(element => {
+        getProvinceList(){
+            var provinceList=totalList.data.areaTree[0].children
+            provinceList.forEach(element => {
                 var item={
                     region:element.name,
                 totalConfirm:element.total.confirm,
                 suspect:element.total.suspect,
                 heal:element.total.heal,
                 dead:element.total.dead}
-                this.previnceList.push(item)
+                this.provinceList.push(item)
             });
         }
     },
@@ -118,7 +118,7 @@ export default {
         detaildata,chinamap,provincclist
     },
     beforeMount(){
-        this.getPrevinceList()
+        this.getProvinceList()
     }
 }
 

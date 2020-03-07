@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=YssaFppIM1BKrAyeiv5qlLFdGsUDbjr7"></script>
 </head>
 <body >
     <div id="chinaData">
@@ -12,7 +13,6 @@
         <div class="jumbotron text-center myHead" style="margin-bottom:0" >
             <h1 class="myHeadText">中国<span class="display-4">加油！</span> 武汉<span class="display-4">加油！</span></h1>
           </div>
-
           <!-- 主体 -->
           <div class="container myContainer"  >
             <!-- <ul class="nav nav-pills nav-justified myNav">
@@ -21,10 +21,18 @@
             </ul> -->
             <div class="row" > 
                <router-link to="/chinaData" tag="span" class="col"> <div class="myNavText">全国疫情</div></router-link>
-               <router-link to="/previnceData" tag="span" class="col"> <div class="myNavText">各省疫情</div></router-link>
+               <router-link to="/provinceData" tag="span" class="col"> <div class="myNavText">各省疫情</div></router-link>
                 <router-link to="/broadcast" tag="span" class="col"><div class=" myNavText"> 实时播报</div></router-link>
             </div>
-            <router-view class="contentBody"></router-view>
+            <!-- 动画 -->
+            <transition 
+                enter-active-class="animated fadeInLeft"
+                leave-active-class="animated fadeOutRight"
+                duration="{enter:200,leave:200}"
+                mode="out-in"
+            >
+              <router-view class="contentBody"></router-view>
+            </transition>
           </div>
 
         <!-- 底部 -->

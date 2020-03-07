@@ -5,13 +5,14 @@
       <!-- 对local进行一个判断 -->
       <div class="col" v-if="this.local.country==undefined||this.local.country==null||this.local.country==''" >
         <div  v-if="this.local.city==null">
-            <div class="display-4" v-text="this.local.prevince">省份</div> 
+            <div class="display-4" v-text="this.local.province">省份</div> 
         </div> 
         <div  v-else>
-            <div class="" v-text="this.local.prevince">省份</div>
+            <div class="" v-text="this.local.province">省份</div>
             <div class="font-weight-bold lead" v-text="this.local.city">城市</div> 
         </div> 
       </div>
+      
       <div class="col" v-else>
         <div>
             <div class="display-4" v-text="this.local.country">国家</div> 
