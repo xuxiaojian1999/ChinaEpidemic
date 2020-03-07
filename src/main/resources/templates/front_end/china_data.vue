@@ -105,7 +105,7 @@ export default {
             var provinceList=totalList.data.areaTree[0].children
             provinceList.forEach(element => {
                 var item={
-                    region:element.name,
+                    province:element.name,
                 totalConfirm:element.total.confirm,
                 suspect:element.total.suspect,
                 heal:element.total.heal,

@@ -6,6 +6,7 @@ import broadcastlist from '@/main/resources/templates/front_end/broadcast_list.v
 import chinadata from '@/main/resources/templates/front_end/china_data.vue'
 //单个省份数据组件
 import provincedata from '@/main/resources/templates/front_end/province_data.vue'
+//导入样式
 import 'bootstrap/dist/css/bootstrap.css'
 import 'jquery/dist/jquery.js'
 import 'bootstrap/dist/js/bootstrap.js'

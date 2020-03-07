@@ -10,8 +10,8 @@
     <div id="chinaData">
         <!-- <broadcastlist></broadcastlist> -->
         <!-- 头部 -->
-        <div class="jumbotron text-center myHead" style="margin-bottom:0" >
-            <h1 class="myHeadText">中国<span class="display-4">加油！</span> 武汉<span class="display-4">加油！</span></h1>
+        <div class="jumbotron text-center" style="margin-bottom:0" >
+            <h1 class="display-4">中国加油！ 武汉加油！</h1>
           </div>
           <!-- 主体 -->
           <div class="container myContainer"  >
@@ -28,7 +28,7 @@
             <transition 
                 enter-active-class="animated fadeInLeft"
                 leave-active-class="animated fadeOutRight"
-                duration="{enter:200,leave:200}"
+                :duration="{enter:1000,leave:1000}"
                 mode="out-in"
             >
               <router-view class="contentBody"></router-view>

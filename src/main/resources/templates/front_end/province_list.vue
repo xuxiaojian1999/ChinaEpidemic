@@ -15,14 +15,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="i in provinceList" :key="i.region">
-        <td>{{i.region}}</td>
+      <tr v-for="i in provinceList" :key="i.province">
+        <td>{{i.province}}</td>
         <td>{{i.totalConfirm-i.heal-i.dead}}</td>
         <td>{{i.totalConfirm}}</td>
         <td>{{i.suspect}}</td>
         <td>{{i.heal}}</td>
         <td>{{i.dead}}</td>
-        <td><a :href="i.region">详情</a></td>
+        <td><a :href="'#/provinceData?province='+i.province">详情</a></td>
       </tr>
     </tbody>
 </table>

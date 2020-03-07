@@ -8,7 +8,6 @@
 		<!-- Dropdown menu links -->
 		<a class="dropdown-item" href="#" @click.prevent="changeProvince('广东')">广东</a>
 		<a class="dropdown-item" href="#" @click.prevent="changeProvince('湖北')">湖北</a>
-		<a class="dropdown-item" href="#" @click.prevent="changeProvince('南海诸岛')">南海诸岛</a>
 		<a class="dropdown-item" href="#" @click.prevent="changeProvince('北京')">北京</a>
 		<a class="dropdown-item" href="#" @click.prevent="changeProvince('天津')">天津</a>
 		<a class="dropdown-item" href="#" @click.prevent="changeProvince('上海')">上海</a>
@@ -91,12 +90,16 @@ export default {
         
     },
     mounted(){
-       this.getLocation()
-       this.sleep(500)
-       if(local!=''){
-           this.province=local
+        if(this.$route.query.province==undefined){
+            this.getLocation()
+            this.sleep(500)
+            if(local!=''){
+                this.province=local
+            }else{
+                    this.tip="定位失败，默认定位："
+            }
        }else{
-             this.tip="定位失败，默认定位："
+           this.province=this.$route.query.province
        }
     },
     watch:{

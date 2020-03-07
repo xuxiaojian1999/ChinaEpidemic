@@ -11,13 +11,13 @@ body{
     width: 100%;
 }
 /* 头部 */
-.myHead{
+/* .myHead{
     height: 20px;
-}
-.myHeadText{
+} */
+/* .myHeadText{
     margin-top: -20px;
     font-size: 38px;
-}
+} */
 /* 主体 */
 .myContainer{
     padding-top: 20px;
