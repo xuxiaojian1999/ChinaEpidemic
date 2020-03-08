@@ -38,11 +38,12 @@ export default {
         getList(){
             //各省详细数据的展示
             this.list=totalList.data.areaTree[0].children;
+            console.log(this.list)
         },
         setShowList(local){
             this.showList={}
             if(local=='')local='湖北'
-            this.list.filter(item=>{
+            this.list.some(item=>{
                 if(item.name==local){
                     var cityList=[]
                     item.children.forEach(element => {
@@ -69,7 +70,7 @@ export default {
                         city:cityList
                     }
                     this.showList=provinceList
-                    return provinceList
+                    return true
                     }
             })
         },

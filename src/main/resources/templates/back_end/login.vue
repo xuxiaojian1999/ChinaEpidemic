@@ -43,6 +43,7 @@
 </template>
 // 需要定义一个供该组件使用的loginb函数
 <script>
+import dao from '@/main/resources/static/js/dao/login.js'
 export default {
     data(){
         return{
@@ -84,28 +85,19 @@ export default {
                 // 当检验都通过是进入login
                 if(!this.passwordFlag&&!this.accountFlag)this.login()
             },
-        // !!!!!需要读取!!!!!!
-            // 用户信息数据
-            // Key:users
-            // 这里直接通过if进行判断
-        login(){
-            var flag=false
-            console.log('进入login.vue的login')
-            //登陆成功
-             if(this.account=="123"&&this.password=='123'){
-                this.account='123'
-                this.password=''
-                this.name='小明'
-                //传回给父组件的判断标志
-                flag=true
-                this.$emit('loginb',this.account,this.name,flag)
-             }else{
-                 //登陆失败
-                flag=false
-                this.checkFlag=true
-                this.$emit('loginb','','',flag)
-             }
-        }
+            //从数据库中检验后
+            login(){
+                 if(dao.loginFromdb(this.account,this.password)){
+                     //登陆成功
+                     this.$emit('loginb',this.account,this.name,flag)
+                 }else {
+                      //登陆失败
+                     this.checkFlag=true
+                    this.$emit('loginb','','',flag)
+                 }
+
+            }
+        
     }
 }
 </script>

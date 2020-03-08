@@ -5,12 +5,18 @@ import 'jquery/dist/jquery.js'
 import 'bootstrap/dist/js/bootstrap.js'
 //导入animate.css
 import 'animate.css'
+//导入自定义样式
+import '@/main/resources/static/css/back_end.css'
 //登陆组件
 import login from '@/main/resources/templates/back_end/login.vue'
 //后台管理组件
 import backend from '@/main/resources/templates/back_end/back_end.vue'
 //导入可设置过期时间的localStorage
 import '@/main/resources/static/js/localStorage.js'
+// 导入路由
+// import VueRouter from 'vue-router'
+// //启用路由
+// Vue.use(VueRouter)
 var vm =new Vue({
     el:'#root',
     data:{
@@ -18,7 +24,6 @@ var vm =new Vue({
         name:'',
         //判断是否登陆，login组件是否显示
         loginFlage:false
-        
     },
     methods:{
         //对登陆标志进行判断
@@ -40,20 +45,15 @@ var vm =new Vue({
         }
     },
     beforeMount(){
-        
-    },
-    mounted(){
-        // 清楚账号
+         // 清除账号
         // localStorage.removeItem('backEndAccount')
         // 判断localstorage中的account是否为空
         var account=localStorage.getExpire('backEndAccount')
-        console.log(account)
         if(account!=null){
             this.account=account.account
             this.name=account.name
             this.loginFlage=true
         }
-
     },
     components:{login,backend}
 })

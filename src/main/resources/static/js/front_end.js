@@ -35,6 +35,6 @@ var vm=new Vue({
     components:{
         broadcastlist,chinadata,provincedata
     },
-    router:router,
+    router
     
 })

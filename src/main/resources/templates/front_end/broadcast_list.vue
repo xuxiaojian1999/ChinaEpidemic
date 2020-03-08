@@ -3,7 +3,7 @@
 <template>
   <div>
   
-      <h1 >疫情追踪</h1>
+      <h1 >实时播报</h1>
     <div class="broadcastContent">
       <div class="line"></div>
       <div class="broadcastList" >
@@ -27,9 +27,9 @@
 // 懒加载的实现
 // 请求后端服务器后返回数据，添加到data.broadcastList中
 <script>
-import Vue from 'vue/dist/vue.js'
-//实时播报数据
-import broadcastList from '@/test/resources/static/test/broadcast-list.js'
+
+//broadcast
+import dao from '@/main/resources/static/js/dao/broadcast.js'
 export default {
     name:"broadcast",
     data(){
@@ -43,16 +43,7 @@ export default {
     },
     //除了methods都是方法
     methods:{
-      //获取全部列表信息
-        getBroadList(){
-          // ！！！！！！！这里异步请求后端，获取broadcastList！！！！！！
-          // 需要读取实时播报数据库
-          //Key：broadcast_data
-          //目前通过.js文件获取
-        broadcastList.data.items.forEach(element => {
-          this.broadcastList.push({releaseTime:element.ptime,disgest:element.digest,title:element.title,source:element.source})
-        });
-        },
+
         //设置展示的列表信息
         pushToShowList(){
           for(var i=0;i<10;i++){
@@ -67,7 +58,7 @@ export default {
         }
     },
     beforeMount(){
-       this.getBroadList()
+       this.broadcastList=dao.getBroadList()
        this.pushToShowList()
     }
 }
