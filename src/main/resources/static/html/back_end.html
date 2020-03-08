@@ -11,16 +11,18 @@
             <h1 class="display-4">疫情数据后台管理</h1>
         </div>
         <!-- 主体 -->
-        <div class="container">
-         <!-- 动画 -->
-         <transition 
-         enter-active-class="animated fadeInLeft"
-         leave-active-class="animated fadeOutRight"
-         :duration="{enter:1000,leave:1000}"
-         mode="out-in">
-            <router-view class="contentBody"></router-view>
-        </transition>
-    </div>
+        <div class="container h-100">
+            <!-- 动画 -->
+            <transition 
+            enter-active-class="animated flipInX"
+            leave-active-class="animated flipOutX"
+            :duration="{enter:1000,leave:1000}"
+            mode="out-in">
+                <login @loginb="loginBack" v-if='!loginFlage'>
+                </login>
+                <backend v-else></backend>
+            </transition>
+        </div>
     </div>
 </body>
 </html>

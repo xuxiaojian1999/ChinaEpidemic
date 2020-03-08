@@ -69,9 +69,6 @@ export default {
     beforeMount(){
        this.getBroadList()
        this.pushToShowList()
-    },
-    mounted(){
-      
     }
 }
 

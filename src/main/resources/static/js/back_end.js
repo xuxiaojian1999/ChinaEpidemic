@@ -1,36 +1,59 @@
 import Vue from 'vue/dist/vue.js'
-//登陆组件
-import login from '@/main/resources/templates/back_end/login.vue'
-//账号管理组件
-import admin from '@/main/resources/templates/back_end/admin.vue'
-//更新疫情数据组件
-import provincelist from '@/main/resources/templates/back_end/province_list.vue'
-//更新实时播报组件
-import broadcastlist from '@/main/resources/templates/back_end/broadcast_list.vue'
 //导入样式
 import 'bootstrap/dist/css/bootstrap.css'
 import 'jquery/dist/jquery.js'
 import 'bootstrap/dist/js/bootstrap.js'
-// 启用路由
-Vue.use(VueRouter)
-//定义路由对象
-var router=new VueRouter({
-    routes:[
-        {path:'/login',component:login},
-        {path:'/admin',component:admin},
-        {path:'/provinceList',component:provincelist},
-        {path:'/broadcastList',component:broadcastlist},
-        {path:'/',redirect:'/login'}
-    ]
-})
+//导入animate.css
+import 'animate.css'
+//登陆组件
+import login from '@/main/resources/templates/back_end/login.vue'
+//后台管理组件
+import backend from '@/main/resources/templates/back_end/back_end.vue'
+//导入可设置过期时间的localStorage
+import '@/main/resources/static/js/localStorage.js'
 var vm =new Vue({
-    el:'root',
+    el:'#root',
     data:{
-
+        account:'',
+        name:'',
+        //判断是否登陆，login组件是否显示
+        loginFlage:false
+        
     },
     methods:{
+        //对登陆标志进行判断
+        login(flag){
+            console.log(flag)
+            if(flag){
+                //存储到localStorage中，时间为一天
+                localStorage.setExpire('backEndAccount',{account:this.account,name:this.name},1)
+                this.loginFlage=true
+            }else{
+            }   
+        },
+        //给login组件调用的方法
+        //登陆信息进行保存
+        loginBack(account,name,flag){
+            this.account=account
+            this.name=name
+            this.login(flag)
+        }
+    },
+    beforeMount(){
+        
+    },
+    mounted(){
+        // 清楚账号
+        // localStorage.removeItem('backEndAccount')
+        // 判断localstorage中的account是否为空
+        var account=localStorage.getExpire('backEndAccount')
+        console.log(account)
+        if(account!=null){
+            this.account=account.account
+            this.name=account.name
+            this.loginFlage=true
+        }
 
     },
-    components:{login,admin,provincelist,broadcastlist},
-    router:router
+    components:{login,backend}
 })
