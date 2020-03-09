@@ -10,7 +10,7 @@ export default{
                  if(account=="123"&&password=='123'){
                      //返回名称和从后端传递过来的随机数
                      //Identity 1:系统管理员 2：工作人员 
-                    return {name:'小明',checkCode:checkCode,identity:2}
+                    return {name:'小明',checkCode:checkCode,identity:1}
                  }else{
                     //登陆失败
                     return false

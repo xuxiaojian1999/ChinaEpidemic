@@ -19,6 +19,7 @@
             leave-active-class="animated bounceOut"
             :duration="{enter:500,leave:1000}"
             mode="out-in">
+            <!-- 将用户信息传递给子组件 -->
       <router-view :user='user'></router-view>
     </transition>
   </div>

@@ -11,7 +11,9 @@ export default{
         //模拟id
         var id=0
       broadcastList.data.items.forEach(element => {
-        newBroadcastList.push({id:id,releaseTime:element.ptime,digest:element.digest,title:element.title,source:element.source})
+        newBroadcastList.push({id:id,releaseTime:element.ptime,
+          digest:element.digest,title:element.title,source:element.source,
+          founder:'founder',modifier:'modifier'})
           id++
       });
       return newBroadcastList
@@ -19,7 +21,7 @@ export default{
       //!!!!!!!!!需要读取！！！！！
       // 需要读取实时播报数据库
       //Key：broadcast_data
-      deleteBroadcastFromdb(id){
+      deleteBroadcastFromdb(id,operator){
         //这里直接返回true
         return true
       },
@@ -27,7 +29,7 @@ export default{
       //需要读取实时播报数据库
       //Key：broadcast_data
       //修改数据库中的broadcast
-    modifyBroadcastFromdb(broadcastItem){
+    modifyBroadcastFromdb(broadcastItem,operator){
 
       //这里直接返回true
       return true
@@ -36,7 +38,7 @@ export default{
     //用户信息数据
     //Key：broadcast_data
     //修改数据库中的broadcast
-    addBroadcastFromdb(broadcastItem){
+    addBroadcastFromdb(broadcastItem,operator){
       //这里直接返回true
       return true
     }

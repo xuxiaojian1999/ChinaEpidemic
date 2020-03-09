@@ -23,6 +23,12 @@
 						<th>
 							releaseTime
 						</th>
+            <th v-if="user.identity==1">
+              modifier
+            </th>
+            <th  v-if="user.identity==1">
+              founder
+            </th>
             <th>
 							operation
 						</th>
@@ -43,6 +49,12 @@
 						<td>
               {{item.releaseTime}}
 						</td>
+            <td v-if="user.identity==1">
+              {{item.modifier}}
+            </td>
+            <td v-if="user.identity==1">
+              {{item.founder}}
+            </td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-warning rounded btn-sm border" data-toggle="modal" data-target="#broadcastItem" @click="modifyModal('modify',item.id)">modify</button>
@@ -138,7 +150,7 @@ export default {
     //删除broadcast
     //在数据库中删除成功，后删除broadcastList中的数据
     deleteBroadcast(id){
-      if(broadcastDao.deleteBroadcastFromdb(id)){
+      if(broadcastDao.deleteBroadcastFromdb(id,this.user,name)){
         this.broadcastList.some((item,index)=>{
           if(item.id==id){
             this.broadcastList.splice(index,1)
@@ -149,14 +161,14 @@ export default {
     
     //修改broadcast
     modifyBroadcast(broadcastItem){
-      if(broadcastDao.modifyBroadcastFromdb(broadcastItem)){
+      if(broadcastDao.modifyBroadcastFromdb(broadcastItem,this.user.name)){
         this.deleteBroadcast(broadcastItem.id)
         this.broadcastList.unshift(broadcastItem)
       }
     }, 
     //新增broadcast
     addBroadcast(broadcastItem){
-      if(broadcastDao.addBroadcastFromdb(broadcastItem)){
+      if(broadcastDao.addBroadcastFromdb(broadcastItem,this.user.name)){
         this.allbroadcastList.unshift(broadcastItem)
       }
     },
@@ -206,6 +218,7 @@ export default {
     this.allBroadcastList=broadcastDao.getBroadcastList()
     this.setBroadcastList()
   },
+  props:['user'],
   components:{}
 }
 

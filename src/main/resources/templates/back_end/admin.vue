@@ -23,10 +23,16 @@
 						<th>
 							phone
 						</th>
+             <th >
+              modifier
+            </th>
+            <th >
+              founder
+            </th>
             <th>
 							operation
-                
 						</th>
+           
 					</tr>
 				</thead>
 				<tbody>
@@ -44,6 +50,12 @@
 						<td>
               {{item.phone}}
 						</td>
+            <td >
+              {{item.modifier}}
+            </td>
+            <td>
+              {{item.founder}}
+            </td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-warning rounded btn-sm border" data-toggle="modal" data-target="#userItem" @click="modifyModal('modify',item.id)">modify</button>
@@ -148,7 +160,7 @@ export default {
     //删除user
     //在数据库中删除成功，后删除userList中的数据
     deleteUser(id){
-      if(dao.deleteUserFromdb(id)){
+      if(dao.deleteUserFromdb(id,this.user.name)){
         this.userList.some((item,index)=>{
           if(item.id==id){
             this.userList.splice(index,1)
@@ -159,14 +171,14 @@ export default {
     
     //修改user
     modifyUser(userItem){
-      if(dao.modifyUserFromdb(userItem)){
+      if(dao.modifyUserFromdb(userItem,this.user.name)){
         this.deleteUser(userItem.id)
         this.userList.unshift(userItem)
       }
     }, 
     //新增user
     addUser(userItem){
-      if(dao.addUserFromdb(userItem)){
+      if(dao.addUserFromdb(userItem,this.user.name)){
         this.allUserList.unshift(userItem)
       }
     },
