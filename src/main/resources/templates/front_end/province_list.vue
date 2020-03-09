@@ -17,7 +17,7 @@
     <tbody>
       <tr v-for="i in provinceList" :key="i.province">
         <td>{{i.province}}</td>
-        <td>{{i.totalConfirm-i.heal-i.dead}}</td>
+        <td>{{i.confirm}}</td>
         <td>{{i.totalConfirm}}</td>
         <td>{{i.suspect}}</td>
         <td>{{i.heal}}</td>

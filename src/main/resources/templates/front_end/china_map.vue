@@ -46,7 +46,7 @@ export default
                 },
             visualMap: {
                 min: 0,
-                max: 100000,
+                max: 10000,
                 left: 'left',
                 top: 'bottom',
                 text: ['高','低'],//取值范围的文字
@@ -92,9 +92,9 @@ export default
         };
          chinaMap.setOption(option);
          //点击各个省份后触发的事件
-        chinaMap.on('click', function (params) {
-            alert(params.name);
-        });
+        // chinaMap.on('click', function (params) {
+        //     alert(params.name);
+        // });
         }
         
     }

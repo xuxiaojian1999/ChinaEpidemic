@@ -2,123 +2,102 @@
 //需要传入很多数据
 <template>
   <div>
-      <detaildata :local="local" :totalData="totalData" :todayData="todayData"></detaildata>
+      <detaildata :local="chinaData.local" :totalData="chinaData.totalData" :todayData="chinaData.todayData"></detaildata>
       <chinamap class="chinaMap" :dataList="comfirmList"></chinamap>
-      <provincclist :provinceList="provinceList"></provincclist>
+      <provincelist :provinceList="provinceList"></provincelist>
   </div>
 </template>
 
 <script>
 import detaildata from '@/main/resources/templates/front_end/detail_data.vue'
 import chinamap from '@/main/resources/templates/front_end/china_map.vue'
-import provincclist from '@/main/resources/templates/front_end/province_list.vue'
+import provincelist from '@/main/resources/templates/front_end/province_list.vue'
 import totalList from '@/test/resources/static/test/total-list.js'
-
+//导入Dao
+import dao from '@/main/resources/static/js/dao/province.js'
 export default {
     data(){
         return{
         //中国疫情数据（传入detail_data中的数据）
-        // ！！！！！！！！需要读取！！！！！！！！
-        // 每日中国新增数据 
-        // Key:china_data:日期
-        // 中国数据
-        // Key:china_data
-        local:{
-            province:null,
-            city:null,
-            country:'中国'
-        },
-        //全部数据
-        totalData:{
-            //现存确诊需要经过计算得到
-            confirm:'累计确诊',
-            suspect:'现存疑似',
-            dead:'累计死亡',
-            heal:'累计治愈'
-        },
-        //新增数据
-        todayData:{
-            totalConfirm:'+1',
-            //需要经过计算得到
-            confirm:'+1',
-            suspect:'+1',
-            dead:'+1',
-            heal:'+1'
-        },
+        chinaData:{},
         //传入china_map中的值
-        //!!!!!!!!!!!!!!需要读取
-        // 各省数据
-        // Key：province_data:省份名称
         //数据
         comfirmList:[
-            {name:"南海诸岛",value: this.randomValue()},
-            {name: '北京', value: this.randomValue()},
-            {name: '天津', value: this.randomValue()},
-            {name: '上海', value: this.randomValue()},
-            {name: '重庆', value: this.randomValue()},
-            {name: '河北', value: this.randomValue()},
-            {name: '河南', value: this.randomValue()},
-            {name: '云南', value: this.randomValue()},
-            {name: '辽宁', value: this.randomValue()},
-            {name: '黑龙江', value: this.randomValue()},
-            {name: '湖南', value: this.randomValue()},
-            {name: '安徽', value: this.randomValue()},
-            {name: '山东', value: this.randomValue()},
-            {name: '新疆', value: this.randomValue()},
-            {name: '江苏', value: this.randomValue()},
-            {name: '浙江', value: this.randomValue()},
-            {name: '江西', value: this.randomValue()},
-            {name: '湖北', value: this.randomValue()},
-            {name: '广西', value: this.randomValue()},
-            {name: '甘肃', value: this.randomValue()},
-            {name: '山西', value: this.randomValue()},
-            {name: '内蒙古', value: this.randomValue()},
-            {name: '陕西', value: this.randomValue()},
-            {name: '吉林', value: this.randomValue()},
-            {name: '福建', value: this.randomValue()},
-            {name: '贵州', value: this.randomValue()},
-            {name: '广东', value: this.randomValue()},
-            {name: '青海', value: this.randomValue()},
-            {name: '西藏', value: this.randomValue()},
-            {name: '四川', value: this.randomValue()},
-            {name: '宁夏', value: this.randomValue()},
-            {name: '海南', value: this.randomValue()},
-            {name: '台湾', value: this.randomValue()},
-            {name: '香港', value: this.randomValue()},
-            {name: '澳门', value: this.randomValue()}
+            {name:"南海诸岛",value:0 },
+            {name: '北京', value:0 },
+            {name: '天津', value:0 },
+            {name: '上海', value:0},
+            {name: '重庆', value:0},
+            {name: '河北', value: 0},
+            {name: '河南', value: 0},
+            {name: '云南', value: 0},
+            {name: '辽宁', value: 0},
+            {name: '黑龙江', value: 0},
+            {name: '湖南', value: 0},
+            {name: '安徽', value: 0},
+            {name: '山东', value: 0},
+            {name: '新疆', value: 0},
+            {name: '江苏', value: 0},
+            {name: '浙江', value: 0},
+            {name: '江西', value: 0},
+            {name: '湖北', value: 0},
+            {name: '广西', value: 0},
+            {name: '甘肃', value: 0},
+            {name: '山西', value: 0},
+            {name: '内蒙古', value: 0},
+            {name: '陕西', value: 0},
+            {name: '吉林', value: 0},
+            {name: '福建', value: 0},
+            {name: '贵州', value: 0},
+            {name: '广东', value: 0},
+            {name: '青海', value: 0},
+            {name: '西藏', value: 0},
+            {name: '四川', value: 0},
+            {name: '宁夏', value: 0},
+            {name: '海南', value: 0},
+            {name: '台湾', value: 0},
+            {name: '香港', value: 0},
+            {name: '澳门', value: 0}
         ],
         //中国各省份的数据
         provinceList:[]
         }
     },
     methods:{
-        //随机数0-1000
-        randomValue() {
-            return Math.round(Math.random()*100000);
+        //计算现存确诊人数
+        counterConfirm(){
+            this.provinceList.forEach(item =>{
+                item['confirm']= item.totalConfirm-item.heal-item.dead
+            })
         },
-        //获取中国各省份的数据
-        // !!!!!!!!!!!需要读取
-        // 各省数据
-        //Key：province_data:省份名称
-        //目前使用.js文件中的数据代替
-        getProvinceList(){
-            var provinceList=totalList.data.areaTree[0].children
-            provinceList.forEach(element => {
-                var item={
-                    province:element.name,
-                totalConfirm:element.total.confirm,
-                suspect:element.total.suspect,
-                heal:element.total.heal,
-                dead:element.total.dead}
-                this.provinceList.push(item)
-            });
+        //设置comfirmList的value
+        setConfirmList(){
+            this.comfirmList.forEach(item =>{
+                this.provinceList.some(i =>{
+                    if(i.province==item.name){
+                        item.value=i.confirm
+                        return true
+                    }
+                })
+            })
         }
+        
     },
     components:{
-        detaildata,chinamap,provincclist
+        detaildata,chinamap,provincelist
     },
     beforeMount(){
-        this.getProvinceList()
+        //初始化省份疫情数据
+        this.provinceList=dao.getProvinceList()
+        //初始化中国疫情数据
+        this.chinaData=dao.getChinaData()
+        //计算现存确诊人数
+        this.counterConfirm()
+        //设置confirmlis
+        this.setConfirmList()
+    },
+    mounted(){
+       
     }
 }
 
