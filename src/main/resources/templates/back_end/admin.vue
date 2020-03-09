@@ -1,5 +1,6 @@
 <template>
-  <div> 
+  <div>
+  <div v-if="user.identity==1"> 
       <div class="row clearfix">
          <form class="form-inline float-right col-md-5 offset-md-7">
             <input type="text" class="form-control w-75" placeholder="enter account or name or phone" v-model="searchElement">
@@ -87,12 +88,23 @@
           <button type="button" class="btn btn-success" data-dismiss="modal" @click="saveModal">save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">clone</button>
         </div>
-   
       </div>
     </div>
   </div>
 		</div>
 	</div>
+  </div>
+      <div v-else class="row clearfix text-danger ">
+        <div class="col-md-12 column">
+          <h2>
+            Wrong
+          </h2>
+          <h4>
+            You do not have permission to browse the interface!
+          </h4>
+          <pre class="text-warning">Please enter the correct address!</pre>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -202,6 +214,7 @@ export default {
     this.allUserList=dao.getAllUserList()
     this.setUserList()
   },
+  props:['user'],
   components:{}
 
 }

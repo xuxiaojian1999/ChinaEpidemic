@@ -43,13 +43,12 @@
 </template>
 // 需要定义一个供该组件使用的loginb函数
 <script>
-import dao from '@/main/resources/static/js/dao/login.js'
+import loginDao from '@/main/resources/static/js/dao/login.js'
 export default {
     data(){
         return{
             account:'',
             password:'',
-            name:'',
             //提示账号密码是否错误
             checkFlag:false,
             //账号提示
@@ -87,13 +86,19 @@ export default {
             },
             //从数据库中检验后
             login(){
-                 if(dao.loginFromdb(this.account,this.password)){
+                //返回给父组件的一个登陆是否成功标志
+                var flag=false
+                var i=loginDao.loginFromdb(this.account,this.password)
+                 if(i!=false){
                      //登陆成功
-                     this.$emit('loginb',this.account,this.name,flag)
-                 }else {
+                     flag=true
+                     this.$emit('loginb',this.account,i.name,i.identity,i.checkCode,flag)
+                 }else if(!i){
                       //登陆失败
-                     this.checkFlag=true
-                    this.$emit('loginb','','',flag)
+                    this.checkFlag=true
+                    this.$emit('loginb','','','','',flag)
+                    
+                      
                  }
 
             }

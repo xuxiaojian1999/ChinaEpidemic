@@ -20,7 +20,7 @@
             mode="out-in">
                 <login @loginb="loginBack" v-if='!loginFlage'>
                 </login>
-                <backend v-else></backend>
+                <backend v-else :user="user" @setloginflag="setLoginFlag"></backend>
             </transition>
         </div>
     </div>

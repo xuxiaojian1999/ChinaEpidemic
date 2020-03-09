@@ -13,6 +13,8 @@ import login from '@/main/resources/templates/back_end/login.vue'
 import backend from '@/main/resources/templates/back_end/back_end.vue'
 //导入可设置过期时间的localStorage
 import '@/main/resources/static/js/localStorage.js'
+//导入Login的dao层
+import dao from '@/main/resources/static/js/dao/login.js'
 // 导入路由
 // import VueRouter from 'vue-router'
 // //启用路由
@@ -20,39 +22,57 @@ import '@/main/resources/static/js/localStorage.js'
 var vm =new Vue({
     el:'#root',
     data:{
-        account:'',
-        name:'',
-        //判断是否登陆，login组件是否显示
+        //用户信息
+        //传递给back_end子组件的数据
+        user:{
+            account:'',
+            name:'',
+            identity:'',
+            checkCode:''
+        },
+        //判断是否登陆，flase,login组件显示
         loginFlage:false
     },
     methods:{
         //对登陆标志进行判断
         login(flag){
-            console.log(flag)
             if(flag){
                 //存储到localStorage中，时间为一天
-                localStorage.setExpire('backEndAccount',{account:this.account,name:this.name},1)
-                this.loginFlage=true
+                localStorage.setExpire('backEndUser',this.user,1)
+                this.setLoginFlag(true)
             }else{
             }   
         },
         //给login组件调用的方法
         //登陆信息进行保存
-        loginBack(account,name,flag){
-            this.account=account
-            this.name=name
+        loginBack(account,name,identity,checkCode,flag){
+            this.user.account=account
+            this.user.name=name
+            this.user.checkCode=checkCode
+            this.user.identity=identity
             this.login(flag)
+        },
+        //设置loginFlag
+        //传递给back_end子组件调用
+        setLoginFlag(flag){
+            this.loginFlage=flag
         }
     },
     beforeMount(){
          // 清除账号
         // localStorage.removeItem('backEndAccount')
         // 判断localstorage中的account是否为空
-        var account=localStorage.getExpire('backEndAccount')
-        if(account!=null){
-            this.account=account.account
-            this.name=account.name
-            this.loginFlage=true
+        var user=localStorage.getExpire('backEndUser')
+        //需要对从localStorage中取出来的user进行校验
+        //主要校验身份和校验码
+        if(user!=null){
+            if(dao.checkFromdb(user.identity,user.checkCode)){
+                this.user.account=user.account
+                this.user.name=user.name
+                this.user.checkCode=user.checkCode
+                this.user.identity=user.identity
+                this.setLoginFlag(true)
+            }
         }
     },
     components:{login,backend}
