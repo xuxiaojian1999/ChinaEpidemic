@@ -60,6 +60,7 @@ export default {
             {name: '澳门', value: 0}
         ],
         //中国各省份的数据
+        //传入provincelist子组件的数据
         provinceList:[]
         }
     },
@@ -67,7 +68,7 @@ export default {
         //计算现存确诊人数
         counterConfirm(){
             this.provinceList.forEach(item =>{
-                item['confirm']= item.totalConfirm-item.heal-item.dead
+                item['partConfirm']= item.confirm-item.heal-item.dead
             })
         },
         //设置comfirmList的value
@@ -75,7 +76,7 @@ export default {
             this.comfirmList.forEach(item =>{
                 this.provinceList.some(i =>{
                     if(i.province==item.name){
-                        item.value=i.confirm
+                        item.value=i.partConfirm
                         return true
                     }
                 })

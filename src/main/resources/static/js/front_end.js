@@ -22,7 +22,8 @@ var router=new VueRouter({
         {path:'/broadcast',component:broadcastlist},
         {path:'/chinaData',component:chinadata},
         {path:'/provinceData',component:provincedata},
-        {path:'/',redirect:'/chinaData'}
+        {path:'/',redirect:'/chinaData'},
+        {path:'*',redirect:'/'}
     ]
 })
 

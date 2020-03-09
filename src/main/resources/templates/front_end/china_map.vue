@@ -51,7 +51,7 @@ export default
                 top: 'bottom',
                 text: ['高','低'],//取值范围的文字
                 inRange: {
-                    color: ['#e0ffff', 'red']//取值范围的颜色
+                    color: ['white', 'red']//取值范围的颜色
                 },
                 show:true//图注
             },
