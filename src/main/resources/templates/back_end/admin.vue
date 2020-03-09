@@ -2,9 +2,10 @@
   <div>
   <div v-if="user.identity==1"> 
       <div class="row clearfix">
-         <form class="form-inline float-right col-md-5 offset-md-7">
+         <form class="form-inline float-right col-md-6 offset-md-6">
             <input type="text" class="form-control w-75" placeholder="enter account or name or phone" v-model="searchElement">
             <button type="submit" class="btn btn-primary" @click.prevent="setUserList">search</button>
+            <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#userItem" @click="modifyModal('add')">add</button>
           </form>
     <div class="col-md-12 column">
 			<table class="table table-hover table-bordered  rounded">
@@ -24,7 +25,7 @@
 						</th>
             <th>
 							operation
-                <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#userItem" @click="modifyModal('add')">add</button>
+                
 						</th>
 					</tr>
 				</thead>

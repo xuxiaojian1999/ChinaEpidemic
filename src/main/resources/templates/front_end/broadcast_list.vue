@@ -13,7 +13,7 @@
             </div>
             <dl class="content">
                 <dt class="title">{{i.title}}</dt>
-                <dd class="disgest">{{i.disgest}}</dd>
+                <dd class="digest">{{i.digest}}</dd>
             </dl>
             <div class="source text-right"><span>来源</span>：{{i.source}}</div>
           </div>
@@ -58,7 +58,7 @@ export default {
         }
     },
     beforeMount(){
-       this.broadcastList=dao.getBroadList()
+       this.broadcastList=dao.getBroadcastList()
        this.pushToShowList()
     }
 }
@@ -140,7 +140,7 @@ h1{
    width: 100%;
 }
 /* 细节 */
-.disgest{
+.digest{
   font-size: 10px;
   width: 100%;
 } 
