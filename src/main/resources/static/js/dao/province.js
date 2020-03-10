@@ -156,7 +156,7 @@ export default{
             }
             return chinaData
         },
-        // !!!!!!!!!!!需要读取
+        // !!!!!!!!!!!需要读取!!!!!!!!
         // 各省数据
         //Key：province_data:省份名称
         //目前使用.js文件中的数据代替

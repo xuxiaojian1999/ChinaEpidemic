@@ -292,6 +292,7 @@ export default {
 		}
 	},
 	beforeMount(){
+		//初始化provinceList
 		//需要在挂载前将数据渲染上去，不然会报空异常
 		//获取全部数据
 		this.provinceList=dao.getNewList()

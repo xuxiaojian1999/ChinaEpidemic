@@ -60,11 +60,23 @@ export default {
         }
     },
     beforeMount(){
+      //初始化broadcastlist
       //调用localS中的方法
       //在localstorage中进行查询，查看“broadcastList”是否存在
-      //参数：查询的名称 查询方法
-       this.broadcastList=localS.accessLocalStorage("broadcastList",dao.getBroadcastList)
-       this.pushToShowList()
+      //参数：查询的名称 
+      var data=localS.accessLocalStorage("broadcastList")
+      if(data!=null){
+          //返回结果不为空
+          this.broadcastList=data
+      }else{
+        //返回结果为null
+        //查询后传入localStorage
+        data=dao.getBroadcastList()
+        this.broadcastList=data
+        localS.setToLocalStorage("broadcastList",data,1)
+      }
+      //初始化showlist
+      this.pushToShowList()
     }
 }
 

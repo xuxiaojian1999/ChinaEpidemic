@@ -93,13 +93,33 @@ export default {
         //初始化省份疫情数据
         //调用localS中的方法
         //在localstorage中进行查询，查看“provinceList”是否存在
-        //参数：查询的名称 查询方法
-        this.provinceList=localS.accessLocalStorage('provinceList',dao.getProvinceList)
+        //参数：查询的名称
+        var data=localS.accessLocalStorage("provinceList")
+        if(data!=null){
+            //返回结果不为空
+            this.provinceList=data
+        }else{
+            //返回结果为null
+            //查询后传入localStorage
+            data=dao.getProvinceList()
+            this.broadcastList=data
+            localS.setToLocalStorage("provinceList",data,1)
+        }
         //初始化中国疫情数据
         //调用localS中的方法
         //在localstorage中进行查询，查看“chinaData”是否存在
-        //参数：查询的名称 查询方法
-        this.chinaData=localS.accessLocalStorage('chinaData',dao.getChinaData)
+        //参数：查询的名称 
+        data=localS.accessLocalStorage('chinaData')
+        if(data!=null){
+            //返回结果不为空
+             this.chinaData=data
+        }else{
+            //返回结果为null
+            //查询后传入localStorage
+            data=dao.getChinaData()
+            this.chinaData=data
+            localS.setToLocalStorage("chinaData",data,1)
+        }
         //计算现存确诊人数
         this.counterConfirm()
         //设置confirmlis

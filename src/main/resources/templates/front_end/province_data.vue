@@ -66,8 +66,18 @@ export default {
         //初始化list（全部数据）
         //调用localS中的方法
         //在localstorage中进行查询，查看“allProvinceList”是否存在
-        //参数：查询的名称 查询方法
-        this.list=localS.accessLocalStorage('allProvinceList',dao.getList)
+        //参数：查询的名称 
+        var data=localS.accessLocalStorage('allProvinceList')
+        if(data!=null){
+            //返回结果不为空
+            this.list=data
+        }else{
+            //返回结果为null
+            //查询后传入localStorage
+            data=dao.getList()
+            this.broadcastList=data
+            localS.setToLocalStorage("allProvinceList",data,1)
+        }
         //初始化showList
         this.setShowList(this.province)
     },

@@ -214,8 +214,10 @@ export default {
     }
   },
   mounted(){
+    //初始化allbroadcastList
     //dao中是getBroadcastList获取全部数据
     this.allBroadcastList=broadcastDao.getBroadcastList()
+    //初始化broadlist
     this.setBroadcastList()
   },
   props:['user'],

@@ -14,7 +14,7 @@
                         mode="out-in">
                             <div v-if="accountFlag" v-text="accountTip" class="text-danger float-right"></div>
                     </transition>
-                <input type="text" class="form-control" v-model="account"  placeholder="Enter account">
+                <input type="text" class="form-control" v-model="user.account"  placeholder="Enter account">
                 </div>
                 <div class="form-group">
                 <label for="pwd" class="text-uppercase">password:</label>
@@ -26,7 +26,7 @@
                         mode="out-in">
                             <div v-if="passwordFlag" v-text="passwordTip" class="text-danger float-right"></div>
                     </transition>
-                <input type="password" class="form-control" v-model="password"  placeholder="Enter password">
+                <input type="password" class="form-control" v-model="user.password"  placeholder="Enter password">
                 </div>
                 <button type="submit" class="btn btn-primary" @click.prevent="check">Submit</button>
                  <transition 
@@ -43,12 +43,20 @@
 </template>
 // 需要定义一个供该组件使用的loginb函数
 <script>
-import loginDao from '@/main/resources/static/js/dao/login.js'
+//导入axios
+import axios from 'axios'
 export default {
     data(){
         return{
-            account:'',
-            password:'',
+            user:{
+                account:'',
+                password:'',
+                name:'',
+                checkCode:'',
+                identity:''
+            },
+            //是否登陆成功,默认为成功
+            loginFlag:false,
             //提示账号密码是否错误
             checkFlag:false,
             //账号提示
@@ -56,7 +64,8 @@ export default {
             accountFlag:false,
             //密码提示
             passwordTip:'',
-            passwordFlag:false
+            passwordFlag:false,
+
         }
     },
     methods:{
@@ -64,47 +73,57 @@ export default {
             check(){
                 var reg=/^[0-9]*$/
                 var pattern=new RegExp(reg)
-                if(this.account===''){
+                if(this.user.account===''){
                     this.accountTip='Account number cannot be empty!'
                     this.accountFlag=true
-                }else if(pattern.test(this.account)){
+                }else if(pattern.test(this.user.account)){
                     this.accountFlag=false
-                }else if(!pattern.test(this.account)){
+                }else if(!pattern.test(this.user.account)){
                     this.accountTip="Please enter the correct account number!"
                     this.accountFlag=true
                 }
 
-                if(this.password==''){
+                if(this.user.password==''){
                     this.passwordTip='Password cannot be empty!'
                     this.passwordFlag=true
                 }else{
                     this.passwordFlag=false
                 }
-
                 // 当检验都通过是进入login
                 if(!this.passwordFlag&&!this.accountFlag)this.login()
             },
-            //从数据库中检验后
+            // !!!!!需要读取!!!!!!
+            // 用户信息数据
+            // Key:users
             login(){
-                //返回给父组件的一个登陆是否成功标志
-                var flag=false
-                var i=loginDao.loginFromdb(this.account,this.password)
-                 if(i!=false){
-                     //登陆成功
-                     flag=true
-                     //给传回的对象新增一个属性
-                     i['account']=this.account
-                     this.$emit('loginb',i,flag)
-                 }else if(!i){
-                      //登陆失败
-                    this.checkFlag=true
-                    this.$emit('loginb','','','','',flag)
-                    
-                      
-                 }
-
+                 //生成一个四位数的随机数
+                 this.user.checkCode=Math.floor(Math.random()*(9999-1000))+1000
+                //异步请求
+                axios.post('/admin/login', {
+                    //账号，密码，随机码
+                        account: this.user.account,
+                        password:this.user.password,
+                        checkCode:this.user.checkCode
+                    })
+                .then(//请求成功处理
+                    response => (
+                        //登陆成功返回一个user对象（name,identity,checkCode,account）
+                        //返回名称和从后端传递过来的随机数
+                        //Identity 1:系统管理员 2：工作人员 
+                        this.user=response
+                    ))
+                .catch(function (error) { // 请求失败处理
+                        console.log(error)
+                    })
             }
         
+    },
+    watch:{
+        'user.name':function(){
+                //当name改变了，就是登陆成功
+                //给父组件传回一个user对象
+                 this.$emit('loginb',this.user)
+        }
     }
 }
 </script>
