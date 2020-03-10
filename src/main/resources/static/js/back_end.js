@@ -34,23 +34,27 @@ var vm =new Vue({
         loginFlage:false
     },
     methods:{
-        //对登陆标志进行判断
-        login(flag){
-            if(flag){
-                //存储到localStorage中，时间为一天
-                localStorage.setExpire('backEndUser',this.user,1)
-                this.setLoginFlag(true)
-            }else{
-            }   
-        },
+        
         //给login组件调用的方法
         //登陆信息进行保存
-        loginBack(account,name,identity,checkCode,flag){
-            this.user.account=account
-            this.user.name=name
-            this.user.checkCode=checkCode
-            this.user.identity=identity
-            this.login(flag)
+        loginBack(user,flag){
+            this.user.account=user.account
+            this.user.name=user.name
+            this.user.checkCode=user.checkCode
+            this.user.identity=user.identity
+            if(flag){
+                //登陆成功
+                //对登陆标志进行判断
+                this.setLoginFlag(true)
+                //在back_end.vue中登陆成功后添加到localStorage中
+                //存储到localStorage中，时间为一天
+                localStorage.setExpire('backEndUser',user,1)
+                
+            }else{
+                this.setLoginFlag(false)
+            }
+           
+
         },
         //设置loginFlag
         //传递给back_end子组件调用
@@ -59,9 +63,8 @@ var vm =new Vue({
         }
     },
     beforeMount(){
-         // 清除账号
-        // localStorage.removeItem('backEndAccount')
-        // 判断localstorage中的account是否为空
+        //在back_end.vue中登陆成功后添加到localStorage中
+        // 判断localstorage中的backEndUser是否为空
         var user=localStorage.getExpire('backEndUser')
         //需要对从localStorage中取出来的user进行校验
         //主要校验身份和校验码

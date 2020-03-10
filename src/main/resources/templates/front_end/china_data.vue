@@ -15,6 +15,8 @@ import provincelist from '@/main/resources/templates/front_end/province_list.vue
 import totalList from '@/test/resources/static/test/total-list.js'
 //导入Dao
 import dao from '@/main/resources/static/js/dao/province.js'
+//导入localS
+import localS from '@/main/resources/static/js/localStorage.js'
 export default {
     data(){
         return{
@@ -89,9 +91,15 @@ export default {
     },
     beforeMount(){
         //初始化省份疫情数据
-        this.provinceList=dao.getProvinceList()
+        //调用localS中的方法
+        //在localstorage中进行查询，查看“provinceList”是否存在
+        //参数：查询的名称 查询方法
+        this.provinceList=localS.accessLocalStorage('provinceList',dao.getProvinceList)
         //初始化中国疫情数据
-        this.chinaData=dao.getChinaData()
+        //调用localS中的方法
+        //在localstorage中进行查询，查看“chinaData”是否存在
+        //参数：查询的名称 查询方法
+        this.chinaData=localS.accessLocalStorage('chinaData',dao.getChinaData)
         //计算现存确诊人数
         this.counterConfirm()
         //设置confirmlis

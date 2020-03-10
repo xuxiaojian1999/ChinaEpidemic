@@ -59,6 +59,8 @@ export default {
   methods:{
     //注销
     logout(){
+      //移除localStorage中的backEndUser
+      //在back_end.js中添加和获取backEndUser
       localStorage.removeItem("backEndUser")
       this.$emit('setloginflag',false)
     }

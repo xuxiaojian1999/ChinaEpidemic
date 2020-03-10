@@ -161,7 +161,7 @@ export default{
         //Key：province_data:省份名称
         //目前使用.js文件中的数据代替
         //获取中国各省份的数据（不包括城市）
-        getProvinceList(){createImageBitmap
+        getProvinceList(){
             var newprovinceList=[]
             var provinceList=totalList.data.areaTree[0].children
             provinceList.forEach(element => {

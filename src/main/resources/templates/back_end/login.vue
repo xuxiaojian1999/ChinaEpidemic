@@ -92,7 +92,9 @@ export default {
                  if(i!=false){
                      //登陆成功
                      flag=true
-                     this.$emit('loginb',this.account,i.name,i.identity,i.checkCode,flag)
+                     //给传回的对象新增一个属性
+                     i['account']=this.account
+                     this.$emit('loginb',i,flag)
                  }else if(!i){
                       //登陆失败
                     this.checkFlag=true

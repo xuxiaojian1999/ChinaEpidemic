@@ -15,6 +15,8 @@ import detaildata from '@/main/resources/templates/front_end/detail_data.vue'
 import location from '@/main/resources/templates/front_end/location.vue'
 //导入Dao
 import dao from '@/main/resources/static/js/dao/province.js'
+//导入localS
+import localS from '@/main/resources/static/js/localStorage.js'
 export default {
     data(){
         return{
@@ -61,10 +63,13 @@ export default {
         }
     },
     mounted(){
-        this.list=dao.getList()
-        // console.log(this.list)
+        //初始化list（全部数据）
+        //调用localS中的方法
+        //在localstorage中进行查询，查看“allProvinceList”是否存在
+        //参数：查询的名称 查询方法
+        this.list=localS.accessLocalStorage('allProvinceList',dao.getList)
+        //初始化showList
         this.setShowList(this.province)
-        // console.log(this.showList)
     },
     watch:{
         province:function(){

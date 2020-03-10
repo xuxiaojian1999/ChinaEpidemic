@@ -28,8 +28,10 @@
 // 请求后端服务器后返回数据，添加到data.broadcastList中
 <script>
 
-//broadcast
+//导入broadcastDao
 import dao from '@/main/resources/static/js/dao/broadcast.js'
+//导入localS
+import localS from '@/main/resources/static/js/localStorage.js'
 export default {
     name:"broadcast",
     data(){
@@ -58,7 +60,10 @@ export default {
         }
     },
     beforeMount(){
-       this.broadcastList=dao.getBroadcastList()
+      //调用localS中的方法
+      //在localstorage中进行查询，查看“broadcastList”是否存在
+      //参数：查询的名称 查询方法
+       this.broadcastList=localS.accessLocalStorage("broadcastList",dao.getBroadcastList)
        this.pushToShowList()
     }
 }

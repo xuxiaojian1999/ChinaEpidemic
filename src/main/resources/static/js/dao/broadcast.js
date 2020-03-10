@@ -3,6 +3,7 @@ import broadcastList from '@/test/resources/static/test/broadcast-list.js'
 export default{
     //获取全部列表信息
     getBroadcastList(){
+      console.log("getBroadcastList")
         // ！！！！！！！这里异步请求后端，获取broadcastList！！！！！！
         // 需要读取实时播报数据库
         //Key：broadcast_data
