@@ -58,7 +58,7 @@
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-warning rounded btn-sm border" data-toggle="modal" data-target="#broadcastItem" @click="modifyModal('modify',item.id)">modify</button>
-                <button type="button" class="btn btn-danger rounded btn-sm border " @click="deleteBroadcast(item.id)">delete</button>
+                <button type="button" class="btn btn-danger rounded btn-sm border " @click="deleteBroadcastFromdb(item.id)">delete</button>
             </div>
 						</td>
         </tr>
@@ -110,8 +110,7 @@
 </template>
 
 <script>
-//导入adminDao层
-import broadcastDao from '@/main/resources/static/js/dao/broadcast.js'
+import func from '../../../../../vue-temp/vue-editor-bridge'
 export default {
   data(){
     return{
@@ -120,19 +119,29 @@ export default {
       //全部列表
       allBroadcastList:[],
       modelType:'',
+      //模态框的数据
       broadcastItem:{
         id:'',
         digest:'',
         source:'',
         title:'',
-        releaseTime:''
+        releaseTime:'',
+        modifyier:'',
+        founder:''
       },
       //搜索条件
-      searchElement:''
+      searchElement:'',
+      //数据库删除标志
+      deleteSign:false,
+      //数据库修改标志
+      midifySign:false,
+      //数据库增加标志
+      addSign:false
     }
   },
   methods:{
-     //更新list
+     //更新broadcastList
+     //展示的列表
      setBroadcastList(){
       var element=this.searchElement
        this.searchElement=''
@@ -147,30 +156,31 @@ export default {
          
        }
      },
-    //删除broadcast
-    //在数据库中删除成功，后删除broadcastList中的数据
+    //删除allBroadcastList中的broadcast
     deleteBroadcast(id){
-      if(broadcastDao.deleteBroadcastFromdb(id,this.user,name)){
-        this.broadcastList.some((item,index)=>{
+      var id=this.broadcastItem.id
+        this.allBroadcastList.some((item,index)=>{
           if(item.id==id){
-            this.broadcastList.splice(index,1)
+            this.allBroadcastList.splice(index,1)
           }
         })
-      }
+        //更新broadcastlist
+      this.setBroadcastList()
     },
-    
-    //修改broadcast
-    modifyBroadcast(broadcastItem){
-      if(broadcastDao.modifyBroadcastFromdb(broadcastItem,this.user.name)){
+    //修改allbroadlist中的broadcast
+    modifyBroadcast(){
+      var broadcastItem=this.broadcastItem
         this.deleteBroadcast(broadcastItem.id)
-        this.broadcastList.unshift(broadcastItem)
-      }
+        this.allBroadcastList.unshift(broadcastItem)
+        //更新broadcastlist
+        this.setBroadcastList()
     }, 
-    //新增broadcast
-    addBroadcast(broadcastItem){
-      if(broadcastDao.addBroadcastFromdb(broadcastItem,this.user.name)){
+    //在allbroadcastlist中新增broadcast
+    addBroadcast(){
+        var broadcastItem=this.broadcastItem
         this.allbroadcastList.unshift(broadcastItem)
-      }
+        //更新broadcastlist
+        this.setBroadcastList()
     },
     //修改模态框类型
     modifyModal(type,id){
@@ -205,21 +215,130 @@ export default {
           alert('please fill in the correct format')
         }else{
           if(id!=null){
-            // id,title,source,digest,releaseTime
-            this.modifyBroadcast(this.broadcastItem)
+            //在数据库中修改
+            this.modifyBroadcastFromdb()
           }else if(id==''||id==undefined){
-            this.addBroadcast(this.broadcastItem)
+            //在数据库中增加
+            this.addBroadcastFromdb()
           }
         }
+    },
+    //在数据库中获取全部实时播报列表信息
+    // ！！！！！！！这里异步请求后端，获取broadcastList！！！！！！
+    // 需要读取实时播报数据库
+    //Key：broadcast_data
+    getBroadcastList(){
+        //异步请求
+       axios
+      .get('/broadcast/getList')
+      .then(response => (
+        //返回值(id,releaseTime,digest,title,source,founder,modifier)
+        this.allBroadcastList = response))
+      .catch(function (error) { // 请求失败处理
+        console.log(error);
+      });
+      },
+      //!!!!!!!!!需要读取！！！！！
+      // 需要读取实时播报数据库
+      //Key：broadcast_data
+      deleteBroadcastFromdb(id){
+        //将获取的id放入data中
+        this.broadcastItem.id=id
+         //异步请求
+        axios.get('/broadcast/deleteBroadcast',
+        {
+          //id要修改的用户的id，operator操作人员的名称
+          id:id,
+          operator:this.user.name
+        })
+        .then(response => (
+          //返回是否删除成功,布尔值
+          this.deleteSign=response
+          ))
+        .catch(function (error) { // 请求失败处理
+          console.log(error);
+        });
+      },
+      //！！！！！！！需要读取！！！！
+      //需要读取实时播报数据库
+      //Key：broadcast_data
+      //修改数据库中的broadcast
+      modifyBroadcastFromdb(){
+                //异步请求
+                axios.post('/broadcast/modifyBroadcast', {
+                    // id,digest,source,title,releaseTime,modifier(操作人员)
+                    id:this.broadcastItem.id,
+                    digest:this.broadcastItem.digest,
+                    source:this.broadcastItem.source,
+                    title:this.broadcastItem.title,
+                    releaseTime:this.broadcastItem.releaseTime,
+                    modifyier:this.user.name
+                    })
+                .then(//请求成功处理
+                    response => (
+                        //修改成功返回true 布尔值
+                        this.modifySign=response
+                    ))
+                .catch(function (error) { // 请求失败处理
+                        console.log(error)
+                    })
+    },
+    //!!!!!!需要读取！！！！！！！
+    //用户信息数据
+    //Key：broadcast_data
+    //修改数据库中的broadcast
+    addBroadcastFromdb(){
+                //异步请求
+                axios.post('/broadcast/addBroadcast', {
+                   //digest,source,title,releaseTime,founder(操作人员)
+                    digest:this.broadcastItem.digest,
+                    source:this.broadcastItem.source,
+                    title:this.broadcastItem.title,
+                    releaseTime:this.broadcastItem.releaseTime,
+                    founder:this.user.name
+                    })
+                .then(//请求成功处理
+                    response => (
+                        //修改成功返回true 布尔值
+                        this.addSign=response
+                    ))
+                .catch(function (error) { // 请求失败处理
+                        console.log(error)
+                    })
     }
+
   },
   mounted(){
     //初始化allbroadcastList
-    //dao中是getBroadcastList获取全部数据
-    this.allBroadcastList=broadcastDao.getBroadcastList()
-    //初始化broadlist
-    this.setBroadcastList()
+    //从数据库中获取全部信息
+    this.getBroadcastList()
   },
+  watch:{
+      'allBroadcastList':function(){
+          //设置broadlist
+          this.setBroadcastList()
+      },
+      'deleteSign':function(){
+        //删除broadlist中的broadcast
+        if(this.deleteSign)this.deleteBroadcast()
+      },
+      'modifySign':function(){
+        //修改broadcastList中的broadcast
+        if(this.modifySign){
+          //修改人
+          this.broadcastItem.modifyier=this.user.name
+          //修改allbroadcastlist
+          this.modifyBroadcast()
+        }
+      },
+      'addSign':function(){
+        //创建人
+         this.broadcastItem.founder=this.user.name
+        //修改allbroadcastlist
+        this.addBroadcast()
+      }
+  },
+  //进入该页面的用户
   props:['user'],
   components:{}
 }

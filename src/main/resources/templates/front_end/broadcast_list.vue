@@ -2,7 +2,6 @@
 //需要传入broadcastList
 <template>
   <div>
-  
       <h1 >实时播报</h1>
     <div class="broadcastContent">
       <div class="line"></div>
@@ -27,9 +26,6 @@
 // 懒加载的实现
 // 请求后端服务器后返回数据，添加到data.broadcastList中
 <script>
-
-//导入broadcastDao
-import dao from '@/main/resources/static/js/dao/broadcast.js'
 //导入localS
 import localS from '@/main/resources/static/js/localStorage.js'
 export default {
@@ -45,7 +41,21 @@ export default {
     },
     //除了methods都是方法
     methods:{
-
+        //在数据库中获取全部实时播报列表信息
+        // ！！！！！！！这里异步请求后端，获取broadcastList！！！！！！
+        // 需要读取实时播报数据库
+        //Key：broadcast_data
+        getBroadcastList(){
+            //异步请求
+            axios
+            .get('/broadcast/getList')
+            .then(response => (
+              //返回值(id,releaseTime,digest,title,source,founder,modifier)
+              this.broadcastList = response))
+            .catch(function (error) { // 请求失败处理
+              console.log(error);
+            });
+          },
         //设置展示的列表信息
         pushToShowList(){
           for(var i=0;i<10;i++){
@@ -67,16 +77,21 @@ export default {
       var data=localS.accessLocalStorage("broadcastList")
       if(data!=null){
           //返回结果不为空
+          //localStorage中存在
           this.broadcastList=data
       }else{
         //返回结果为null
         //查询后传入localStorage
-        data=dao.getBroadcastList()
-        this.broadcastList=data
-        localS.setToLocalStorage("broadcastList",data,1)
+        //在getBroadcastList()方法中会设置this.broadcastList
+        this.getBroadcastList()
+        localS.setToLocalStorage("broadcastList",this.broadcastList,1)
       }
-      //初始化showlist
-      this.pushToShowList()
+    },
+    watch:{
+      'broadcastList':function(){
+        //设置showlist
+        this.pushToShowList()
+      }
     }
 }
 

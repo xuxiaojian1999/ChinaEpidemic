@@ -143,7 +143,9 @@ export default {
         password:'',
         account:'',
         phone:'',
-        identity:''
+        identity:'',
+        modifier:'',
+        founder:''
       },
       //搜索条件
       searchElement:'',
@@ -159,6 +161,7 @@ export default {
      //更新userlist
      setUserList(){
       var element=this.searchElement
+      //置空
        this.searchElement=''
        if(element==undefined||element==''){
          this.userList=this.allUserList
@@ -173,7 +176,8 @@ export default {
      },
     //删除allUserList中的user数据
     //参数，要删除的用户id
-    deleteUser(id){
+    deleteUser(){
+      var id=this.userItem.id
         this.allUserList.some((item,index)=>{
           if(item.id==id){
             this.allUserList.splice(index,1)
@@ -183,14 +187,16 @@ export default {
         this.setUserList()
     },
     //修改allUserList中的user
-    modifyUser(userItem){
+    modifyUser(){
+      var userItem=this.userItem
         this.deleteUser(userItem.id)
         this.allUserList.unshift(userItem)
         //重新设置userlist
         this.setUserList()
     }, 
     //在alluserList中新增user
-    addUser(userItem){
+    addUser(){
+      var userItem=this.userItem
         this.allUserList.unshift(userItem)
         //重新设置userlist
         this.setUserList()
@@ -199,19 +205,22 @@ export default {
     openModal(type,id){
       this.modelType=type
       if(id!=undefined){
+        //修改user
+        this.userItem.id=id
         this.userList.some((item,index)=>{
           if(item.id==id){
             this.userItem=item
           }
         })
       }else{
+        //新增user
         this.userItem={
-        id:'',
-        name:'',
-        password:'',
-        account:'',
-        phone:''
-      }
+          id:'',
+          name:'',
+          password:'',
+          account:'',
+          phone:''
+        }
       }
     },
     //保存模态框
@@ -229,7 +238,7 @@ export default {
           alert('please fill in the correct format')
         }else{
           if(id!=null){
-           //在数据中修改
+           //在数据库中修改
             this.modifyUserFromdb()
           }else if(id==''||id==undefined){
             //在数据库中新增
@@ -244,9 +253,9 @@ export default {
     // 获取全部用户数据
     getAllUserList(){
       //异步请求
-      axios.get('admin/getList')
+      axios.get('/admin/getList')
       //返回值为全部user列表
-      //user(id,account,name,password,phone:,modifie,founder,identity)
+      //user(id,account,name,password,phone,modifie,founder,identity)
       //checkCode不需要展示
       .then(response => (this.allUserList= response))
       .catch(function (error) { // 请求失败处理
@@ -259,12 +268,14 @@ export default {
     //删除数据库的user
     //直接有按钮调用
     deleteUserFromdb(id){
-            //异步请求
-      axios.get('admin/deleteUser',
+      //将获取的id赋值到this.userItem.id中
+      this.userItem.id=id
+      //异步请求
+      axios.get('/admin/deleteUser',
       {
-        //id要修改的用户的id，operator操作人员的名称
+        //id要修改的用户的id，modifier操作人员的名称
         id:id,
-        operator:user.name
+        modifier:this.user.name
       })
       .then(response => (
         //返回是否删除成功,布尔值
@@ -281,14 +292,14 @@ export default {
     modifyUserFromdb(){
                 //异步请求
                 axios.post('/admin/modifyUser', {
-                    // id,account,password,name,phone,identity,operator(操作人员)
-                    id:userItem.id,
+                    // id,account,password,name,phone,identity,modifier(操作人员)
+                    id:this.userItem.id,
                     account: this.userItem.account,
                     password:this.userItem.password,
                     name:this.userItem.name,
                     phone:this.userItem.phone,
                     identity:this.userItem.identity,
-                    operator:this.user.name
+                    modifier:this.user.name
                     })
                 .then(//请求成功处理
                     response => (
@@ -304,15 +315,15 @@ export default {
     // Key:users 
     //在数据库中新增user
     addUserFromdb(){
-                    //异步请求
+                //异步请求
                 axios.post('/admin/addUser', {
-                    //account,password,name,phone,identity,operator(操作人员)
+                    //account,password,name,phone,identity,founder(操作人员)
                     account: this.userItem.account,
                     password:this.userItem.password,
                     name:this.userItem.name,
                     phone:this.userItem.phone,
                     identity:this.userItem.identity,
-                    operator:this.user.name
+                    founder:this.user.name
                     })
                 .then(//请求成功处理
                     response => (
@@ -335,13 +346,23 @@ export default {
       this.setUserList()
     },
     'deleteSign':function(){
-      if(this.deleteSign)this.deleteUser(this.userItem.id)
+      if(this.deleteSign){this.deleteUser(this.userItem.id)}
     },
     'modifySign':function(){
-      if(this.modifySign)this.modifyUser(this.userItem)
+      if(this.modifySign){
+        //修改this.userItemmodifier
+        this.userItem.modifier=this.user.name
+        //修改alluserlist
+        this.modifyUser()
+        }
     },
     'addSign':function(){
-      if(this.addSign)this.addUser(this.userItem)
+      if(this.addSign){
+        //修改this.userItem.founder
+        this.userItem.founder=this.user.name
+        //增加alluserlist
+        this.addUser(this.userItem)
+        }
     }
   },//user是登陆到这个页面的用户
   props:['user'],
