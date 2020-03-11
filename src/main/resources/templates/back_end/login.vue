@@ -97,7 +97,7 @@ export default {
                  //生成一个四位数的随机数
                  this.user.checkCode=Math.floor(Math.random()*(9999-1000))+1000
                 //异步请求
-                axios.post('/admin/login', {
+                axios.post('/user/login', {
                     //账号，密码，随机码
                         account: this.user.account,
                         password:this.user.password,

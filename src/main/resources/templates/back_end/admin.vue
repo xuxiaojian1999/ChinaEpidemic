@@ -248,7 +248,7 @@ export default {
     // 获取全部用户数据
     getAllUserList(){
       //异步请求
-      axios.get('/admin/getList')
+      axios.get('/user/getList')
       //返回值为全部user列表
       //user(id,account,name,password,phone,modifie,founder,identity)
       //checkCode不需要展示
@@ -270,7 +270,7 @@ export default {
       //将获取的id赋值到this.userItem.id中
       this.userItem.id=id
       //异步请求
-      axios.get('/admin/deleteUser',
+      axios.get('/user/deleteUser',
       {
         //id要修改的用户的id，modifier操作人员的名称
         id:id,
@@ -290,7 +290,7 @@ export default {
     //修改数据库中的user
     modifyUserFromdb(){
                 //异步请求
-                axios.post('/admin/modifyUser', {
+                axios.post('/user/modifyUser', {
                     // id,account,password,name,phone,identity,modifier(操作人员)
                     id:this.userItem.id,
                     account: this.userItem.account,
@@ -320,7 +320,7 @@ export default {
     //在数据库中新增user
     addUserFromdb(){
                 //异步请求
-                axios.post('/admin/addUser', {
+                axios.post('/user/addUser', {
                     //account,password,name,phone,identity,founder(操作人员)
                     //id在数据库中自动生成
                     account: this.userItem.account,

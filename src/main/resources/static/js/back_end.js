@@ -61,7 +61,7 @@ var vm =new Vue({
         checkFromdb(account,identity,checkCode){
             //对比数据库中的checkCode和identity是否一致
             //异步请求
-            axios.post('/admin/check', {
+            axios.post('/user/check', {
                 //账号，身份，随机码
                     account: account,
                     identity:identity,
