@@ -49,9 +49,17 @@ export default {
             //异步请求
             axios
             .get('/broadcast/getList')
-            .then(response => (
+            .then(response => {
               //返回值(id,releaseTime,digest,title,source,founder,modifier)
-              this.broadcastList = response))
+              if(response!=null&&response!=undefined&&response!=''){
+                //当response不为空时，赋值给broadcastlist
+                this.broadcastList = response
+                //设置showlist
+                this.pushToShowList()
+                //将broadcastlist存储到localstorage中 
+                 localS.setToLocalStorage("broadcastList",this.broadcastList,1)
+              }
+            })
             .catch(function (error) { // 请求失败处理
               console.log(error);
             });
@@ -74,23 +82,15 @@ export default {
       //调用localS中的方法
       //在localstorage中进行查询，查看“broadcastList”是否存在
       //参数：查询的名称 
-      var data=localS.accessLocalStorage("broadcastList")
+      var data=localS.getFromLocalStorage("broadcastList")
       if(data!=null){
           //返回结果不为空
           //localStorage中存在
           this.broadcastList=data
       }else{
-        //返回结果为null
-        //查询后传入localStorage
+        //返回结果为null，则调用getBroadcastList方法，重新从数据库获取broadcastlist
         //在getBroadcastList()方法中会设置this.broadcastList
         this.getBroadcastList()
-        localS.setToLocalStorage("broadcastList",this.broadcastList,1)
-      }
-    },
-    watch:{
-      'broadcastList':function(){
-        //设置showlist
-        this.pushToShowList()
       }
     }
 }

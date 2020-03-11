@@ -43,8 +43,6 @@
 </template>
 // 需要定义一个供该组件使用的loginb函数
 <script>
-//导入axios
-import axios from 'axios'
 export default {
     data(){
         return{
@@ -106,24 +104,20 @@ export default {
                         checkCode:this.user.checkCode
                     })
                 .then(//请求成功处理
-                    response => (
+                    response => {
                         //登陆成功返回一个user对象（name,identity,checkCode,account）
                         //返回名称和从后端传递过来的随机数
                         //Identity 1:系统管理员 2：工作人员 
                         this.user=response
-                    ))
+                        //当name不为空，就是登陆成功
+                         //给父组件传回一个user对象
+                        if(this.user.name!=null&&this.user!='')this.$emit('loginb',this.user)
+                    })
                 .catch(function (error) { // 请求失败处理
                         console.log(error)
                     })
             }
         
-    },
-    watch:{
-        'user.name':function(){
-                //当name改变了，就是登陆成功
-                //给父组件传回一个user对象
-                 this.$emit('loginb',this.user)
-        }
     }
 }
 </script>

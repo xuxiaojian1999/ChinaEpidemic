@@ -28,7 +28,7 @@
         //如果存在localStorage中，就直接取出并返回
         //如果不存在localStorage中，就返回null
         //参数：字符串（需要查询的） 
-        accessLocalStorage(str){
+        getFromLocalStorage(str){
             var local=localStorage
             var item=local.getExpire(str)
             if(item!=undefined&&item!=''&&item!=null){

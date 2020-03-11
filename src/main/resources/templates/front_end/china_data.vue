@@ -12,9 +12,6 @@
 import detaildata from '@/main/resources/templates/front_end/detail_data.vue'
 import chinamap from '@/main/resources/templates/front_end/china_map.vue'
 import provincelist from '@/main/resources/templates/front_end/province_list.vue'
-import totalList from '@/test/resources/static/test/total-list.js'
-//导入Dao
-import dao from '@/main/resources/static/js/dao/province.js'
 //导入localS
 import localS from '@/main/resources/static/js/localStorage.js'
 export default {
@@ -83,8 +80,66 @@ export default {
                     }
                 })
             })
+        },
+        // !!!!!!!!!!!需要读取!!!!!!!!
+        // 各省数据
+        //Key：province_data:省份名称
+        //获取中国各省份的数据（不包括城市）
+        getProvinceList(){
+            //异步请求
+            axios
+            .get('/province/getProvinceList')
+            .then(response => (
+                //返回值
+                //provinceItem={
+            //     local:{
+            //         province:item.name,
+            //          city:null,
+            //          country:null
+            //      },                        
+            //      todayData:item.today,
+            //      totalData:item.total,
+            //      lastUpdateTime:item.lastUpdateTime
+            //    }
+                this.provinceList = response
+                ))
+            .catch(function (error) { // 请求失败处理
+                console.log(error);
+            });
+        },
+        // ！！！！！！！！需要读取！！！！！！！！
+        // 每日中国新增数据 
+        // Key:china_data:日期
+        // 中国数据
+        // Key:china_data
+        //获取中国当日的一个总数据
+        getChinaData(){
+            var china=totalList.data.areaTree[0]
+            var chinaData={
+                local:{ 
+                    province:null,
+                    city:null,
+                    country:china.name},
+                totalData:china.total,
+                // {
+                //     //现存确诊需要经过计算得到
+                //     confirm:'累计确诊',
+                //     suspect:'现存疑似',
+                //     dead:'累计死亡',
+                //     heal:'累计治愈'
+                // },
+                todayData:china.today
+                // {
+                //     totalConfirm:'+1',
+                //     //现存确诊需要经过计算得到
+                //     confirm:'+1',
+                //     suspect:'+1',
+                //     dead:'+1',
+                //     heal:'+1'
+                // }
+            }
+            return chinaData
         }
-        
     },
     components:{
         detaildata,chinamap,provincelist
@@ -92,6 +147,7 @@ export default {
     beforeMount(){
         //初始化省份疫情数据
         //调用localS中的方法
+        //在provincelist子组件中存储的
         //在localstorage中进行查询，查看“provinceList”是否存在
         //参数：查询的名称
         var data=localS.accessLocalStorage("provinceList")
@@ -100,10 +156,10 @@ export default {
             this.provinceList=data
         }else{
             //返回结果为null
-            //查询后传入localStorage
-            data=dao.getProvinceList()
-            this.broadcastList=data
-            localS.setToLocalStorage("provinceList",data,1)
+            this.getProvinceList()
+            //调用该方法后，会重新给this.provinceList赋值
+            //然后触发watch
+            //计算现存确诊人数，设置confirmlist
         }
         //初始化中国疫情数据
         //调用localS中的方法
@@ -116,20 +172,21 @@ export default {
         }else{
             //返回结果为null
             //查询后传入localStorage
-            data=dao.getChinaData()
+            this.getChinaData()
             this.chinaData=data
             localS.setToLocalStorage("chinaData",data,1)
         }
-        //计算现存确诊人数
-        this.counterConfirm()
-        //设置confirmlis
-        this.setConfirmList()
     },
-    mounted(){
-       
+    watch:{
+        provinceList:function(){
+            //计算现存确诊人数
+            this.counterConfirm()
+            //设置confirmlist,传入到china_map中的数据
+            this.setConfirmList()
+            
+        }
     }
 }
-
 </script>
 <style>
 .chinaMap{

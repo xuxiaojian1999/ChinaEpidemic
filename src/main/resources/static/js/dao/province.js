@@ -23,8 +23,6 @@ export default{
             }
             return year+'-'+month+'-'+strDate+' '+h+':'+m+':'+s
         },
-
-
         // ！！！！！需要读取！！！！！！！！！！！！！
         // 各省数据
         // Key：province_data:省份名称
@@ -36,41 +34,44 @@ export default{
         // Key：province_data:日期:省份名称
         //这里的每日最新是指前一天
         // 这里通过获取.js文件中的数据模拟
-        //获取各省份数据（包括城市）
-        getList(){
-            //全部省详细数据的展示
-            var provinceList=[]
-            totalList.data.areaTree[0].children.forEach(item => {
-               var provinceItem=[]
-               var cityList=[]
-                item.children.forEach(i=>{
-                    var cityItem={
-                        local:{
-                            province:item.name,
-                            city:i.name,
-                            country:null
-                        },
-                        todayData:i.today,
-                        totalData:i.total,
-                        lastUpdateTime:i.lastUpdateTime
-                    }
-                    cityList.push(cityItem)
-                })
-               provinceItem={
-                local:{
-                    province:item.name,
-                     city:null,
-                     country:null
-                 },                        
-                 todayData:item.today,
-                 totalData:item.total,
-                 lastUpdateTime:item.lastUpdateTime,
-                 city:cityList
-               }
-               provinceList.push(provinceItem)
-            });
-            return provinceList
-        },
+        //获取各省份数据（包括城市）用于前台展示
+        // getList(){
+        //     //全部省详细数据的展示
+        //     var provinceList=[]
+        //     totalList.data.areaTree[0].children.forEach(item => {
+        //        var provinceItem=[]
+        //        var cityList=[]
+        //         item.children.forEach(i=>{
+        //             var cityItem={
+        //                 local:{
+        //                     province:item.name,
+        //                     city:i.name,
+        //                     country:null
+        //                 },
+        //                 todayData:i.today,
+        //                 totalData:i.total,
+        //                 lastUpdateTime:i.lastUpdateTime
+        //             }
+        //             cityList.push(cityItem)
+        //         })
+        //        provinceItem={
+        //         local:{
+        //             province:item.name,
+        //              city:null,
+        //              country:null
+        //          },                        
+        //          todayData:item.today,
+        //          totalData:item.total,
+        //          lastUpdateTime:item.lastUpdateTime,
+        //          city:cityList
+        //        }
+        //        provinceList.push(provinceItem)
+        //     });
+        //     return provinceList
+        // },
+
+
+        
         // ！！！！！需要读取！！！！！！！！！！！！！
         // 各省数据
         // Key：province_data:省份名称

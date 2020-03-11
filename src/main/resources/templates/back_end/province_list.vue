@@ -204,16 +204,16 @@
               <div class="col-md-12 column">
                 <form role="form">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">account:</label><input class="form-control" v-model="cityData.confirm"/>
+                    <label for="exampleInputEmail1">confirm:</label><input class="form-control" v-model="cityData.confirm"/>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">name:</label><input  class="form-control" v-model="cityData.suspect"/>
+                    <label for="exampleInputPassword1">suspect:</label><input  class="form-control" v-model="cityData.suspect"/>
                   </div> 
                   <div class="form-group">
-                    <label for="exampleInputPassword1">password:</label><input class="form-control" v-model="cityData.heal"/>
+                    <label for="exampleInputPassword1">heal:</label><input class="form-control" v-model="cityData.heal"/>
                   </div> 
                   <div class="form-group">
-                    <label for="exampleInputPassword1">phone:</label><input  class="form-control" v-model="cityData.dead"/>
+                    <label for="exampleInputPassword1">dead:</label><input  class="form-control" v-model="cityData.dead"/>
                   </div>
                 </form>
               </div>
@@ -229,13 +229,9 @@
     </div>
   </div>
   </div>
-  <!-- <th v-if="user.identity==1">
-						</th>
-						<th v-if="user.identity==1"></th> -->
 </template>
 
 <script>
-import dao  from '@/main/resources/static/js/dao/province.js'
 export default {
 	data(){
 		return{

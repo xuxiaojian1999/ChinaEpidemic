@@ -30,7 +30,8 @@
 </template>
 
 <script>
-
+//导入localS
+import localS from '@/main/resources/static/js/localStorage.js'
 export default {
   data(){
     return{
@@ -38,7 +39,11 @@ export default {
     }
   },
   methods:{
-
+    
+  },
+  mounted(){
+    //存储到localstorage中
+    localS.setToLocalStorage("provinceList",this.provinceList,1)
   },
   props:['provinceList']
 }

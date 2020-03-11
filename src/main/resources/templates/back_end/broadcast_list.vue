@@ -5,7 +5,7 @@
          <form class="form-inline float-right col-md-6 offset-md-6 ">
             <input type="text" class="form-control w-75" placeholder="enter title or digest or releaseTime" v-model="searchElement">
             <button type="submit" class="btn btn-primary" @click.prevent="setBroadcastList">search</button>
-            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#broadcastItem" @click="modifyModal('add')">add</button>
+            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#broadcastItem" @click="openModal('add')">add</button>
           </form>
     <div class="col-md-12 column">
 			<table class="table table-hover table-bordered  rounded">
@@ -57,7 +57,7 @@
             </td>
             <td>
               <div class="btn-group">
-                <button type="button" class="btn btn-warning rounded btn-sm border" data-toggle="modal" data-target="#broadcastItem" @click="modifyModal('modify',item.id)">modify</button>
+                <button type="button" class="btn btn-warning rounded btn-sm border" data-toggle="modal" data-target="#broadcastItem" @click="openModal('modify',item.id)">modify</button>
                 <button type="button" class="btn btn-danger rounded btn-sm border " @click="deleteBroadcastFromdb(item.id)">delete</button>
             </div>
 						</td>
@@ -110,7 +110,6 @@
 </template>
 
 <script>
-import func from '../../../../../vue-temp/vue-editor-bridge'
 export default {
   data(){
     return{
@@ -130,13 +129,7 @@ export default {
         founder:''
       },
       //搜索条件
-      searchElement:'',
-      //数据库删除标志
-      deleteSign:false,
-      //数据库修改标志
-      midifySign:false,
-      //数据库增加标志
-      addSign:false
+      searchElement:''
     }
   },
   methods:{
@@ -164,26 +157,23 @@ export default {
             this.allBroadcastList.splice(index,1)
           }
         })
-        //更新broadcastlist
-      this.setBroadcastList()
+        //watch中监听allBroadcastList，自动更新broadcastlist
     },
     //修改allbroadlist中的broadcast
     modifyBroadcast(){
       var broadcastItem=this.broadcastItem
         this.deleteBroadcast(broadcastItem.id)
         this.allBroadcastList.unshift(broadcastItem)
-        //更新broadcastlist
-        this.setBroadcastList()
+        //watch中监听allBroadcastList，自动更新broadcastlist
     }, 
     //在allbroadcastlist中新增broadcast
     addBroadcast(){
         var broadcastItem=this.broadcastItem
-        this.allbroadcastList.unshift(broadcastItem)
-        //更新broadcastlist
-        this.setBroadcastList()
+        this.allBroadcastList.unshift(broadcastItem)
+       //watch中监听allBroadcastList，自动更新broadcastlist
     },
-    //修改模态框类型
-    modifyModal(type,id){
+    //打开模态框类型
+    openModal(type,id){
       this.modelType=type
       if(id!=undefined){
         this.broadcastList.some((item,index)=>{
@@ -247,14 +237,15 @@ export default {
          //异步请求
         axios.get('/broadcast/deleteBroadcast',
         {
-          //id要修改的用户的id，operator操作人员的名称
+          //id要修改的用户的id，modifyier操作人员的名称
           id:id,
-          operator:this.user.name
+          modifyier:this.user.name
         })
-        .then(response => (
+        .then(response => {
           //返回是否删除成功,布尔值
-          this.deleteSign=response
-          ))
+          //删除broadlist中的broadcast
+          if(response)this.deleteBroadcast()
+        })
         .catch(function (error) { // 请求失败处理
           console.log(error);
         });
@@ -275,10 +266,15 @@ export default {
                     modifyier:this.user.name
                     })
                 .then(//请求成功处理
-                    response => (
-                        //修改成功返回true 布尔值
-                        this.modifySign=response
-                    ))
+                    response => {
+                      //修改成功返回true 布尔值
+                      if(response){
+                        //修改人
+                        this.broadcastItem.modifyier=this.user.name
+                        //修改allbroadcastlist
+                        this.modifyBroadcast()
+                      }
+                    })
                 .catch(function (error) { // 请求失败处理
                         console.log(error)
                     })
@@ -298,10 +294,15 @@ export default {
                     founder:this.user.name
                     })
                 .then(//请求成功处理
-                    response => (
-                        //修改成功返回true 布尔值
-                        this.addSign=response
-                    ))
+                    response => {
+                      //修改成功返回true 布尔值
+                      if(response){
+                        //创建人
+                        this.broadcastItem.founder=this.user.name
+                        //修改allbroadcastlist
+                        this.addBroadcast()
+                      }
+                    })
                 .catch(function (error) { // 请求失败处理
                         console.log(error)
                     })
@@ -315,27 +316,9 @@ export default {
   },
   watch:{
       'allBroadcastList':function(){
+        //当allBroadcast改变时
           //设置broadlist
           this.setBroadcastList()
-      },
-      'deleteSign':function(){
-        //删除broadlist中的broadcast
-        if(this.deleteSign)this.deleteBroadcast()
-      },
-      'modifySign':function(){
-        //修改broadcastList中的broadcast
-        if(this.modifySign){
-          //修改人
-          this.broadcastItem.modifyier=this.user.name
-          //修改allbroadcastlist
-          this.modifyBroadcast()
-        }
-      },
-      'addSign':function(){
-        //创建人
-         this.broadcastItem.founder=this.user.name
-        //修改allbroadcastlist
-        this.addBroadcast()
       }
   },
   //进入该页面的用户

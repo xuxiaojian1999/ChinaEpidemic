@@ -54,7 +54,8 @@
               {{item.phone}}
 						</td>
             <td>
-              {{item.identity}}
+              <span class="badge badge-danger" v-if="item.identity==1">系统管理员</span> 
+              <span class="badge badge-success" v-else>工作人员</span> 
             </td>
             <td >
               {{item.modifier}}
@@ -148,13 +149,7 @@ export default {
         founder:''
       },
       //搜索条件
-      searchElement:'',
-      //数据库删除标志
-      deleteSign:false,
-      //数据库修改标志
-      modifySign:false,
-      //数据库增加标志
-      addSign:false
+      searchElement:''
     }
   },
   methods:{
@@ -164,6 +159,7 @@ export default {
       //置空
        this.searchElement=''
        if(element==undefined||element==''){
+         //显示全部user
          this.userList=this.allUserList
        }else{
          this.userList=this.allUserList.filter(item=>{
@@ -171,42 +167,40 @@ export default {
            var reg =  new RegExp(element);
            if(reg.test(item.name)||reg.test(item.account)||reg.test(item.phone))return item
          })
-         
        }
      },
     //删除allUserList中的user数据
-    //参数，要删除的用户id
     deleteUser(){
+      //this.user只有在打开模态框时才会清空
       var id=this.userItem.id
         this.allUserList.some((item,index)=>{
           if(item.id==id){
             this.allUserList.splice(index,1)
           }
         })
-        //重新设置userlist
-        this.setUserList()
+        //wathc监听alluserlist,自动重新设置userlist
     },
     //修改allUserList中的user
     modifyUser(){
+      //this.user只有在打开模态框时才会清空
       var userItem=this.userItem
         this.deleteUser(userItem.id)
         this.allUserList.unshift(userItem)
-        //重新设置userlist
-        this.setUserList()
+        //wathc监听alluserlist,自动重新设置userlist
     }, 
     //在alluserList中新增user
     addUser(){
+      //this.user只有在打开模态框时才会清空
       var userItem=this.userItem
         this.allUserList.unshift(userItem)
-        //重新设置userlist
-        this.setUserList()
+       //wathc监听alluserlist,自动重新设置userlist
     },
     //打开模态框
     openModal(type,id){
       this.modelType=type
       if(id!=undefined){
         //修改user
-        this.userItem.id=id
+        //在userlist中查询符合该id的user
         this.userList.some((item,index)=>{
           if(item.id==id){
             this.userItem=item
@@ -219,6 +213,7 @@ export default {
           name:'',
           password:'',
           account:'',
+          identity:'',
           phone:''
         }
       }
@@ -257,7 +252,11 @@ export default {
       //返回值为全部user列表
       //user(id,account,name,password,phone,modifie,founder,identity)
       //checkCode不需要展示
-      .then(response => (this.allUserList= response))
+      .then(response => {
+        //从数据库中获取到全部user
+        if(response!=null&&response!=undefined)this.allUserList= response
+        //wathc监听alluserlist,自动重新设置userlist
+        })
       .catch(function (error) { // 请求失败处理
         console.log(error);
       });
@@ -277,10 +276,10 @@ export default {
         id:id,
         modifier:this.user.name
       })
-      .then(response => (
-        //返回是否删除成功,布尔值
-        this.deleteSign=response
-        ))
+      .then(response => {
+           //返回值，删除成功返回true,布尔值
+        if(response)this.deleteUser(this.userItem.id)
+      })
       .catch(function (error) { // 请求失败处理
         console.log(error);
       });
@@ -302,10 +301,15 @@ export default {
                     modifier:this.user.name
                     })
                 .then(//请求成功处理
-                    response => (
-                        //修改成功返回true 布尔值
-                        this.modifySign=response
-                    ))
+                    response => {
+                      //返回值，成功返回true，布尔值
+                      if(response){
+                        //修改this.userItemmodifier
+                        this.userItem.modifier=this.user.name
+                        //修改alluserlist
+                        this.modifyUser()
+                      }
+                    })
                 .catch(function (error) { // 请求失败处理
                         console.log(error)
                     })
@@ -318,6 +322,7 @@ export default {
                 //异步请求
                 axios.post('/admin/addUser', {
                     //account,password,name,phone,identity,founder(操作人员)
+                    //id在数据库中自动生成
                     account: this.userItem.account,
                     password:this.userItem.password,
                     name:this.userItem.name,
@@ -326,10 +331,15 @@ export default {
                     founder:this.user.name
                     })
                 .then(//请求成功处理
-                    response => (
+                    response => {
                         //修改成功返回true 布尔值
-                        this.addSign=response
-                    ))
+                        if(response){
+                          //修改this.userItem.founder
+                          this.userItem.founder=this.user.name
+                          //增加alluserlist
+                          this.addUser(this.userItem)
+                        }
+                    })
                 .catch(function (error) { // 请求失败处理
                         console.log(error)
                     })
@@ -338,34 +348,14 @@ export default {
   beforeMount(){
     //初始化alluserList
     this.getAllUserList()
-  },
-  watch:{
-    'allUserList':function(){
-      //当alluserlist改变时，就是从数据库中获取到了全部user
-      //初始化userlist
-      this.setUserList()
-    },
-    'deleteSign':function(){
-      if(this.deleteSign){this.deleteUser(this.userItem.id)}
-    },
-    'modifySign':function(){
-      if(this.modifySign){
-        //修改this.userItemmodifier
-        this.userItem.modifier=this.user.name
-        //修改alluserlist
-        this.modifyUser()
-        }
-    },
-    'addSign':function(){
-      if(this.addSign){
-        //修改this.userItem.founder
-        this.userItem.founder=this.user.name
-        //增加alluserlist
-        this.addUser(this.userItem)
-        }
-    }
   },//user是登陆到这个页面的用户
   props:['user'],
+  watch:{
+    allUserList:function(){
+      //更新userlist
+      this.setUserList()
+    }
+  },
   components:{}
 
 }

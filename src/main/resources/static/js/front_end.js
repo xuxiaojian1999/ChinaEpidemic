@@ -26,7 +26,13 @@ var router=new VueRouter({
         {path:'*',redirect:'/'}
     ]
 })
-
+//导入axios
+import axios from 'axios'
+//设置根域名
+axios.defaults.baseURL='/ChinaEpidemic'
+//导入vue-axios
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios,axios)
 var vm=new Vue({
     el:"#chinaData",
     data:{
