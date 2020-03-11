@@ -181,7 +181,7 @@
 						<td>
 							<button type="button" class="btn btn-warning rounded btn-sm border" 
 							data-toggle="modal" data-target="#userItem" 
-							@click="modifyModal(item)">modify</button>
+							@click="openModal(item)">modify</button>
 						</td>
 					</tr>
 				</tbody>
@@ -240,6 +240,7 @@ export default {
 			showList:[],
 			//全部的数据
 			provinceList:[],
+			//模态框中的数据
 			cityData:{
 				id:null,
 				city:'',
@@ -254,7 +255,10 @@ export default {
 		//设置展示的数据showlist
 		setShowList(){
 			var province=[]
+			//filter返回的是一个数组
+			//所以需要先用一个数组来装取，然后再取出里面的第一个数组
 			province=this.provinceList.filter(item =>{
+				//循环找出所需的省份数据
 				if(item.local.province==this.province) return item 
 			})
 			this.showList=province[0]
@@ -263,8 +267,8 @@ export default {
 		changeProvince(local){
 			this.province=local
 		},
-		//修改触发模态框
-		modifyModal(item){
+		//打开触发模态框
+		openModal(item){
 			this.cityData={
 				id:item.id,
 				city:item.local.city,
@@ -279,31 +283,149 @@ export default {
 			var patrn = /^[0-9]*$/
 			if(patrn.test(this.cityData.confirm)&&patrn.test(this.cityData.suspect)
 			&&patrn.test(this.cityData.heal)&&patrn.test(this.cityData.dead)){
-				if(dao.modifyTodayFromdb(this.cityData)){
-					location.reload()
-				}
+				//当输入值为数字时调用，modifyTodayFromdb()
+				this.modifyTodayFromdb(this.cityData)
 			}else{
 				alert("Please fill in the whole number!")
 			}
-		}
+		},
+		//当前时间生成器
+        getNewTime(){
+            var date=new Date()
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            // 在 numbers<10 的数字前加上 0
+            m = checkTime(m);
+            s = checkTime(s);
+            month=checkTime(month)
+            strDate=checkTime(strDate)
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+            return year+'-'+month+'-'+strDate+' '+h+':'+m+':'+s
+        },
+		// ！！！！！需要读取！！！！！！！！！！！！！
+        // 各省数据
+        // Key：province_data:省份名称
+        // 各城市数据
+        //Key：city_data:省份名称:城市名称
+        // 每日城市新增数据
+        // Key：city_data:日期:省份名称:城市名称
+        // 每日省新增数据
+        // Key：province_data:日期:省份名称
+        //这里的每日是指当天
+        // 这里通过获取.js文件中的数据模拟
+        //获取各省份数据（包括城市），用于后台更新，
+        //todayData中的数据为疫情最新修改数据
+        getNewList(){
+			//异步请求
+            axios
+            .get('/province/getNewList')
+            .then(response => {
+			//返回值：
+			//这里是后台，所以需要更新时间
+					//省数据
+                //{
+            //     local:{
+            //         province:item.name,
+            //          city:null,
+            //          country:null
+            //      },                        
+            //      todayData:item.today,
+            //      totalData:item.total,
+            //      lastUpdateTime:item.lastUpdateTime,
+            //      city:cityList
+			//    }
+			//		城市数据
+            //  citylist=[  数组*{
+                    //     local:{
+                    //         province:item.name,
+                    //         city:i.name,
+                    //         country:null
+                    //     },
+					//     todayData:
+					//		{
+							// 	id:item.id,
+							// 	city:item.local.city,
+							// 	confirm:item.todayData.confirm,
+							// 	suspect:item.todayData.suspect,
+							// 	heal:item.todayData.heal,
+							// 	dead:item.todayData.dead,
+							// 	lastUpdateTime:item.lastUpdateTime
+							// }
+					//     totalData:
+					//		{
+							// 	id:item.id,
+							// 	city:item.local.city,
+							// 	confirm:item.todayData.confirm,
+							// 	suspect:item.todayData.suspect,
+							// 	heal:item.todayData.heal,
+							// 	dead:item.todayData.dead,
+							// 	lastUpdateTime:item.lastUpdateTime
+							// }
+                    //     lastUpdateTime:i.lastUpdateTime
+                    // }]
+                    if(response!=null){
+                        //返回值不为空
+                        this.provinceList = response
+                        //watch中监听provinceList，会自动更新showlist
+                        //传入localStorage
+                    }
+             })
+            .catch(function (error) { // 请求失败处理
+                console.log(error);
+            });
+		},
+		//!!!!!!!!需要读取！！！！
+        //修改每日城市新增数据
+        //直接修改mysql
+        modifyTodayFromdb(item){
+				//异步请求
+                axios.post('/province/modifyCity', {
+                    // id,city,confirm,suspect,heal,dead,lastUpdateTime(由前端生成),modifier(操作人员)
+                    id:this.cityData.id,
+					city:this.cityData.city,
+					confirm:this.cityData.confirm,
+					suspect:this.cityData.suspect,
+					heal:this.cityData.heal,
+					dead:this.cityData.dead,
+					modifier:this.user.name,
+					lastUpdateTime:this.getNewTime()
+                    })
+                .then(//请求成功处理
+                    response => {
+                      //返回值，成功返回true，布尔值
+                      if(response){
+                        //当修改成功后
+						//刷新页面，让beforeMount()自动更新provinceList数据
+						location.reload()
+                      }
+                    })
+                .catch(function (error) { // 请求失败处理
+                        console.log(error)
+                })
+        }
 	},
 	beforeMount(){
 		//初始化provinceList
 		//需要在挂载前将数据渲染上去，不然会报空异常
 		//获取全部数据
-		this.provinceList=dao.getNewList()
-		//给展示的数据初始化
-		this.setShowList()
-	}
-	,
-	mounted(){
-		
+		this.getNewList()
 	},
 	watch:{
 		'province':function(){
+			//当province改变时，重新设置showlist
 			this.setShowList()
 		}
-	}
+	},
+	props:['user']
 }
 
 </script>

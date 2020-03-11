@@ -29,7 +29,8 @@ export default {
     },
     methods:{
         // 根据路由传递过来的参数，获取单个省份的数据
-        setShowList(local){
+        setShowList(){
+            var local=this.province
             this.showList={}
             if(local=='')local='湖北'
             // console.log(this.list)
@@ -53,12 +54,12 @@ export default {
                         city:cityList
                     }
                     this.showList=provinceList
+                    //结束some循环
                     return true
-                    }
+                }
             })
         },
         //设置province，给location子组件提供一个返回定位省份的方法
-        //用来查询省份数据
         setProvince(province){
             if(province!='')this.province=province
         },
@@ -78,8 +79,9 @@ export default {
             axios
             .get('/province/getList')
             .then(response => {
-                //返回值
-                //provinceItem={
+            //返回值：
+            //这里不需要更新时间，只需要数据
+                //{
             //     local:{
             //         province:item.name,
             //          city:null,
@@ -87,7 +89,6 @@ export default {
             //      },                        
             //      todayData:item.today,
             //      totalData:item.total,
-            //      lastUpdateTime:item.lastUpdateTime,
             //      city:cityList
             //    }
             //  citylist=[  数组*{
@@ -97,12 +98,16 @@ export default {
                     //         country:null
                     //     },
                     //     todayData:i.today,
-                    //     totalData:i.total,
-                    //     lastUpdateTime:i.lastUpdateTime
+                    //     totalData:i.total
                     // }]
-                this.list = response,//查询后传入localStorage
-                localS.setToLocalStorage("allProvinceList",this.list,1)
-                return 
+                    if(response!=null){
+                        //返回值不为空
+                        this.list = response
+                        //watch中监听list，会自动更新showlist
+                        //传入localStorage
+                        localS.setToLocalStorage("allProvinceList",this.list,1)
+                    }
+              
              })
             .catch(function (error) { // 请求失败处理
                 console.log(error);
@@ -118,8 +123,7 @@ export default {
         if(data!=null){
             //返回结果不为空
             this.list=data
-            //初始化showList
-            this.setShowList(this.province)
+            //watch中监听list，会自动更新showlist
         }else{
             //返回结果为null.
             //从数据库中查询，
@@ -127,17 +131,17 @@ export default {
             //并且更新showlist
             this.getList()
         }
-        
     },
     watch:{
         province:function(){
+            //当省份改变时
             //更新showlist
-            this.setShowList(this.province)
+            this.setShowList()
         },
         list:function(){
-            //list更新时，就是使用getlist从数据库重新获取得到的
+            //list改变时
             //更新showlist
-             this.setShowList(this.province)
+             this.setShowList()
             
         }
     },

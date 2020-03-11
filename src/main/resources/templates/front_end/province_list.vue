@@ -41,10 +41,6 @@ export default {
   methods:{
     
   },
-  mounted(){
-    //存储到localstorage中
-    localS.setToLocalStorage("provinceList",this.provinceList,1)
-  },
   props:['provinceList']
 }
 </script>

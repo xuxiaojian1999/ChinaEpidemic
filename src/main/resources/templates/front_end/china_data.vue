@@ -89,20 +89,26 @@ export default {
             //异步请求
             axios
             .get('/province/getProvinceList')
-            .then(response => (
-                //返回值
-                //provinceItem={
-            //     local:{
-            //         province:item.name,
-            //          city:null,
-            //          country:null
-            //      },                        
-            //      todayData:item.today,
-            //      totalData:item.total,
-            //      lastUpdateTime:item.lastUpdateTime
-            //    }
-                this.provinceList = response
-                ))
+            .then(response => {
+                //返回值：
+                //{
+                //     local:{
+                //         province:item.name,
+                //          city:null,
+                //          country:null
+                //      },                        
+                //      todayData:item.today,
+                //      totalData:item.total,
+                //      lastUpdateTime:item.lastUpdateTime
+                // }
+                if(response!=null){
+                    //当返回值不为空
+                     //将provinceList,存储到localstorage中
+                    localS.setToLocalStorage("provinceList",this.provinceList,1)
+                    this.provinceList = response
+                }
+               
+            })
             .catch(function (error) { // 请求失败处理
                 console.log(error);
             });
@@ -114,13 +120,17 @@ export default {
         // Key:china_data
         //获取中国当日的一个总数据
         getChinaData(){
-            var china=totalList.data.areaTree[0]
-            var chinaData={
-                local:{ 
-                    province:null,
-                    city:null,
-                    country:china.name},
-                totalData:china.total,
+            //异步请求
+            axios
+            .get('/province/getChinaData')
+            .then(response => {
+            //返回值：
+                //{
+                // local:{ 
+                //     province:null,
+                //     city:null,
+                //     country:china.name},
+                //totalData:
                 // {
                 //     //现存确诊需要经过计算得到
                 //     confirm:'累计确诊',
@@ -128,7 +138,7 @@ export default {
                 //     dead:'累计死亡',
                 //     heal:'累计治愈'
                 // },
-                todayData:china.today
+                //todayData:
                 // {
                 //     totalConfirm:'+1',
                 //     //现存确诊需要经过计算得到
@@ -137,8 +147,18 @@ export default {
                 //     dead:'+1',
                 //     heal:'+1'
                 // }
-            }
-            return chinaData
+            //}
+                if(response!=null){
+                    //当返回值不为空
+                     this.chinaData = response
+                    //将chinaData,存储到localstorage中
+                     localS.setToLocalStorage("chinaData",this.chinaData,1)
+                }
+               
+            })
+            .catch(function (error) { // 请求失败处理
+                console.log(error);
+            });
         }
     },
     components:{
@@ -147,17 +167,16 @@ export default {
     beforeMount(){
         //初始化省份疫情数据
         //调用localS中的方法
-        //在provincelist子组件中存储的
         //在localstorage中进行查询，查看“provinceList”是否存在
         //参数：查询的名称
-        var data=localS.accessLocalStorage("provinceList")
+        var data=localS.getFromLocalStorage("provinceList")
         if(data!=null){
             //返回结果不为空
             this.provinceList=data
         }else{
             //返回结果为null
             this.getProvinceList()
-            //调用该方法后，会重新给this.provinceList赋值
+            //调用该方法后，会重新给this.provinceList赋值，在该方法中会存入到localStorage中
             //然后触发watch
             //计算现存确诊人数，设置confirmlist
         }
@@ -165,25 +184,23 @@ export default {
         //调用localS中的方法
         //在localstorage中进行查询，查看“chinaData”是否存在
         //参数：查询的名称 
-        data=localS.accessLocalStorage('chinaData')
+        data=localS.getFromLocalStorage('chinaData')
         if(data!=null){
             //返回结果不为空
              this.chinaData=data
         }else{
             //返回结果为null
-            //查询后传入localStorage
+            //调用getChinaData方法，在该方法中会存入到localStorage中
             this.getChinaData()
-            this.chinaData=data
-            localS.setToLocalStorage("chinaData",data,1)
         }
     },
     watch:{
         provinceList:function(){
+            //当provinceList改变时
             //计算现存确诊人数
             this.counterConfirm()
             //设置confirmlist,传入到china_map中的数据
             this.setConfirmList()
-            
         }
     }
 }
