@@ -119,7 +119,7 @@ export default {
         //调用localS中的方法
         //在localstorage中进行查询，查看“allProvinceList”是否存在
         //参数：查询的名称 
-        var data=localS.accessLocalStorage('allProvinceList')
+        var data=localS.getFromLocalStorage('allProvinceList')
         if(data!=null){
             //返回结果不为空
             this.list=data

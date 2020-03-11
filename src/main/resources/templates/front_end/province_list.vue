@@ -30,8 +30,6 @@
 </template>
 
 <script>
-//导入localS
-import localS from '@/main/resources/static/js/localStorage.js'
 export default {
   data(){
     return{
