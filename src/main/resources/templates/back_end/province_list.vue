@@ -1,7 +1,34 @@
 <template>
   <div>
+	  <!-- 动画 -->
+            <transition 
+                enter-active-class="animated rotaeIn"
+                leave-active-class="animated rotaeOut"
+                :duration="{enter:1000,leave:1000}"
+                mode="out-in"
+            >
+			<!-- 当updateSign为1时，为正在更新数据状态 -->
+				<div v-if="updateSign==1" class="alert alert-secondary alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Be careful!</strong> Updating database！
+				</div>
+			<!-- 当updateSign为2时，为正在更新成功状态 -->	
+				<div v-if="updateSign==2" class="alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Success!</strong> Database update succeeded! Please refresh the page to view the latest data!
+				</div>
+			<!-- 当updateSign为3时，为正在更新失败状态 -->	
+				<div v-if="updateSign==3" class="alert  alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Fail!</strong> Database update failed! Please try again!
+				</div>
+            </transition>
     <div class="row btn-group dropright w-100">
-	  <button type="button" class="col-md-12 btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<!-- 系统管理员可以点击 -->
+		<button v-if="user.identity==1" type="button" class="col-md-2 btn btn-outline-danger" @click="updateProvince">update</button>
+		<!-- 工作人员不可点击 -->
+		<button v-else type="button" class="col-md-2 btn btn-outline-danger" disabled>update</button>
+	  <button type="button" class="col-md-10 btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		当前查看的是 <span class="lead">{{province}}省</span>的疫情数据
 	  </button>
 	  <div class="dropdown-menu">
@@ -97,6 +124,29 @@
 							{{showList.lastUpdateTime}}
 						</td>
 					</tr>
+					<tr>
+						<td>
+							not shown
+						</td>
+						<td>
+							{{showList.local.province}}
+						</td>
+						<td>
+							{{showList.totalData.confirm+showList.todayData.confirm}}
+						</td>
+						<td>
+							{{showList.totalData.suspect+showList.todayData.suspect}}
+						</td>
+						<td>
+							{{showList.totalData.heal+showList.todayData.heal}}
+						</td>
+						<td>
+							{{showList.totalData.dead+showList.todayData.dead}}
+						</td>
+						<td>
+							{{showList.lastUpdateTime}}
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -160,22 +210,22 @@
 						<td>
 							not shown
 						</td>
-						<td>
+						<td >
 							{{item.local.city}}
 						</td>
-						<td>
+						<td v-if="item.todayData!=null">
 							{{item.todayData.confirm+item.totalData.confirm}}
 						</td>
-						<td>
+						<td v-if="item.todayData!=null">
 							{{item.todayData.suspect+item.totalData.suspect}}
 						</td>
-						<td>
+						<td v-if="item.todayData!=null"> 
 							{{item.todayData.heal+item.totalData.heal}}
 						</td>
-						<td>
+						<td v-if="item.todayData!=null">
 							{{item.todayData.dead+item.totalData.dead}}
 						</td>
-						<td>
+						<td v-if="item.todayData!=null">
 							{{item.todayData.lastUpdateTime}}
 						</td>
 						<td>
@@ -248,11 +298,13 @@ export default {
 				suspect:0,
 				heal:0,
 				dead:0
-			}
+			},
+			updateSign:0
 		}
 	},
 	methods:{
 		//设置展示的数据showlist
+		//查询出相应的省份数据
 		setShowList(){
 			var province=[]
 			//filter返回的是一个数组
@@ -411,7 +463,31 @@ export default {
                 .catch(function (error) { // 请求失败处理
                         console.log(error)
                 })
-        }
+		},
+		//!!!!!需要读取
+		//更新新的每日城市，每日省份，默认值全为0
+		//每日省份数据仅用于参考，无法修改
+		updateProvince(){
+			//进入该处理方法，先把updatedign标志改为1，为正在更新数据状态
+			this.updateSign=1
+			//异步请求
+            axios
+            .get('/province/getNewList')
+            .then(response => {
+				//返回值，布尔值
+				//成功返回true
+                    if(response){
+						//数据库更新成功，将updatesign改为2，为更新成功状态
+						this.updateSign=2
+                    }else{
+						//数据库更新失败，将updatesign改为3，为更新失败状态
+						this.updateSign=3
+					}
+             })
+            .catch(function (error) { // 请求失败处理
+                console.log(error);
+            });
+		}
 	},
 	beforeMount(){
 		//初始化provinceList

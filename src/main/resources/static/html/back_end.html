@@ -10,7 +10,7 @@
     <div id="root">
         <div class="jumbotron text-center" style="margin-bottom:0" >
             <h1 class="display-4">疫情数据后台管理</h1>
-            <div class="row clearfix">
+            <div class="row clearfix"  v-if='!loginFlage'>
                 <div class="col-md-12 column">
                     <dl>
                         <dt>
@@ -20,7 +20,10 @@
                             The data displayed at the front desk will be updated at 8:00 every morning. 
                         </dd>
                         <dd>
-                            Please log in at about 8:00 every morning to check the front desk page!
+                            Please check the front desk page around 8 o'clock every morning!
+                        </dd>
+                        <dd>
+                            If the list of provinces not shown is empty, please contact the system administrator to update the list of provinces!
                         </dd>
                     </dl>
                 </div>
