@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ChinaEpidemic" />
+        <module name="china_epidemic" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ChinaEpidemic" target="1.8" />
+      <module name="china_epidemic" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ChinaEpidemic" options="-parameters" />
+      <module name="china_epidemic" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,4 +1,0 @@
-/* 防止闪烁 */
-[v-cloak]{
-    display: none;
-}
