@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.BroadcastMapper">
+    <select id="selectAllBroadcast" resultType="Broadcast">
+        SELECT * FROM broadcast WHERE release_time!="0000";
+    </select>
+    <update id="updateReleaseTimeById">
+        UPDATE broadcast SET release_time='0000',modifier=#{modifier} WHERE id=#{id}
+    </update>
+    <update id="updateBroadcast">
+         UPDATE broadcast SET release_time=#{releaseTime},modifier=#{modifier},
+          digest=#{digest},source=#{source},title=#{title} WHERE id=#{id}
+    </update>
+    <insert id="insertBroadcast">
+        INSERT INTO broadcast (release_time,digest,title,source,founder)
+        VALUES (#{releaseTime},#{digest},#{title},#{source},#{founder})
+    </insert>
+</mapper>

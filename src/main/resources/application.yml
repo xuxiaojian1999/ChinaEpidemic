@@ -18,6 +18,9 @@ spring:
         max-active: 10
         min-idle: 2
     timeout: 2000
+  mvc:
+    view:
+      prefix: /html/
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.pojo

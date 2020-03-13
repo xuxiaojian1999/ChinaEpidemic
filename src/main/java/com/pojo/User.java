@@ -13,6 +13,9 @@ public class User implements Serializable {
     private String founder;
     private String modifier;
 
+    public User() {
+    }
+
     public User(Integer id, String name, String account, String password, String phone, String checkCode, Integer identity, String founder, String modifier) {
         this.id = id;
         this.name = name;
