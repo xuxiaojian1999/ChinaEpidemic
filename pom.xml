@@ -19,6 +19,17 @@
     </properties>
 
     <dependencies>
+        <!--redis客户端jedis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <!--json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.51</version>
+        </dependency>
         <!--mysql数据库驱动-->
         <dependency>
             <groupId>mysql</groupId>

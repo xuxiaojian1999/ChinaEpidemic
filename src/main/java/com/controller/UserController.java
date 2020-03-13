@@ -2,12 +2,12 @@ package com.controller;
 
 import com.pojo.User;
 import com.service.UserService;
-import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 
 
 @RestController
@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 public class UserController {
     @Autowired
     private UserService userService;
+    private Logger logger= LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping("/login")
     public User login(String account,String password){

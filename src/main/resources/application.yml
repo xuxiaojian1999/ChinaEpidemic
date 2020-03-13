@@ -1,17 +1,25 @@
 server:
   port: 8080
 spring:
-  #数据库连接配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/china_epidemic?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
-#mybatis的相关配置
+  main:
+    lazy-initialization: false
+  redis:
+    port: 6379
+    password: 123456
+    host: 192.168.80.228
+    jedis:
+      pool:
+        max-idle: 6
+        max-active: 10
+        min-idle: 2
+    timeout: 2000
 mybatis:
-  #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.pojo
-  #开启驼峰命名
   configuration:
     map-underscore-to-camel-case: true
