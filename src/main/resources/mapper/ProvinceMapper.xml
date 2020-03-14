@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ProvinceMapper">
+    <select id="selectAllByDay" resultType="ProvinceItem">
+        SELECT * FROM everyday_province_data WHERE day=#{day}
+    </select>
+    <select id="selectAll" resultType="ProvinceItem">
+        SELECT * FROM province_data
+    </select>
+    <select id="selectProvince" resultType="ProvinceItem">
+        SELECT province from province_data
+    </select>
+    <insert id="insertProvinceByDayAndProvince">
+         INSERT INTO everyday_province_data (confirm,suspect,heal,dead,day,province)
+        VALUES (#{confirm},#{suspect},#{heal},#{dead},#{day},#{province})
+    </insert>
+    <update id="updateProvinceByProvince">
+        UPDATE province_data
+        SET confirm=#{confirm},suspect=#{suspect},heal=#{heal},dead=#{dead},last_update_time=#{lastUpdateTime}
+        WHERE province=#{province}
+    </update>
+</mapper>

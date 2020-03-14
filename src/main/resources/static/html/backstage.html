@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="root">
+        <div class="jumbotron text-center" style="margin-bottom:0" >
+            <h1 class="display-4">疫情数据后台管理</h1>
+            <div class="row clearfix"  v-if='!loginFlage'>
+                <div class="col-md-12 column">
+                    <dl>
+                        <dt>
+                            Be careful!
+                        </dt>
+                        <dd>
+                            If the list data in the foreground is empty,
+                            Please contact the system administrator to update the list of provinces before 12 p.m. every day!
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <!-- 主体 -->
+        <div class="container h-100">
+            <!-- 动画 -->
+            <transition 
+            enter-active-class="animated flipInX"
+            leave-active-class="animated flipOutX"
+            :duration="{enter:1000,leave:1000}"
+            mode="out-in">
+                <login @loginb="loginBack" v-if='!loginFlage'>
+                </login>
+                <backstage v-else :user="user" @setloginflag="setLoginFlag"></backstage>
+            </transition>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../dist/backstage.js"></script>

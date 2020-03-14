@@ -5,25 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78cab6ce-097c-4691-adba-9df9a06c8919" name="Default Changelist" comment="配置完jedis">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/controller/BroadcastController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/controller/IndexController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dao/BroadcastMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pojo/Broadcast.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/BroadcastService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/utils/RedisUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/BroadcastMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dao/ProvinceMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pojo/Local.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pojo/Province.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pojo/ProvinceItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/service/ProvinceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/CityMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ProvinceMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/JedisUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/JedisUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/dist/back_end.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dist/back_end.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/dist/front_end.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dist/front_end.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/html/back_end.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/html/back_end.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/html/back_end.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/html/backstage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/html/front_end.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/html/front_desk.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -37,34 +33,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/BroadcastController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="58" column="88" lean-forward="true" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="88" />
+            <state relative-caret-position="506">
+              <caret line="49" column="45" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#705#706#0" expanded="true" />
+                <element signature="e#742#743#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/BroadcastService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/ProvinceService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="99" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="99" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="60" column="65" lean-forward="true" selection-start-line="60" selection-start-column="65" selection-end-line="60" selection-end-column="65" />
+            <state relative-caret-position="276">
+              <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,19 +59,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/back_end.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/BroadcastMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="27" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="-216">
+              <caret line="87" column="32" lean-forward="true" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,10 +71,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BroadcastMapper.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/ProvinceMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+            <state relative-caret-position="347">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ProvinceMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="19" column="93" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="18" column="18" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/CityMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="19" column="51" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -108,9 +118,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="spring-beans.schema" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
@@ -137,15 +147,28 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pojo/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dao/BroadcastRedis.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/utils/JedisUtils.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/utils/RedisUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/controller/BroadcastController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/service/BroadcastService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/service/Impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dao/BroadcastMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/BroadcastMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/html/back_end.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/front_desk.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pojo/Local.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pojo/ProvinceParam.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pojo/Province.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pojo/ProvinceItem.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/html/backstage.html" />
+        <option value="$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/service/ProvinceService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/CityMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dao/ProvinceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/ProvinceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -179,10 +202,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="7" />
+    <option name="y" value="279" />
     <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="height" value="657" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -367,7 +390,8 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1584115345531" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1584204676789" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="D:/Git/bin/git.exe" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -401,7 +425,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ChinaEpidemicApplicationTests.jedisResponse">
+  <component name="RunManager" selected="JUnit.ChinaEpidemicApplicationTests.timeTest">
     <configuration name="ChinaEpidemicApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="china_epidemic" />
       <extension name="coverage">
@@ -434,6 +458,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ChinaEpidemicApplicationTests.timeOut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="china_epidemic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.ChinaEpidemicApplicationTests" />
+      <option name="METHOD_NAME" value="timeOut" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChinaEpidemicApplicationTests.timeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="china_epidemic" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example" />
+      <option name="MAIN_CLASS_NAME" value="com.example.ChinaEpidemicApplicationTests" />
+      <option name="METHOD_NAME" value="timeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ChinaEpidemicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="china_epidemic" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ChinaEpidemicApplication" />
@@ -443,6 +499,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ChinaEpidemicApplicationTests.timeTest" />
+        <item itemvalue="JUnit.ChinaEpidemicApplicationTests.timeOut" />
         <item itemvalue="JUnit.ChinaEpidemicApplicationTests.jedisResponse" />
         <item itemvalue="JUnit.ChinaEpidemicApplicationTests.contextLoads" />
       </list>
@@ -460,7 +518,8 @@
       <updated>1584021658637</updated>
       <workItem from="1584021661469" duration="4946000" />
       <workItem from="1584026797558" duration="14000" />
-      <workItem from="1584070313250" duration="27621000" />
+      <workItem from="1584070313250" duration="27780000" />
+      <workItem from="1584162913676" duration="26593000" />
     </task>
     <task id="LOCAL-00001" summary="配置完jedis">
       <created>1584075742063</created>
@@ -480,33 +539,45 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ChinaEpidemicApplicationTests_contextLoads - 2020.03.13 at 12h 52m 05s.xml">
-      <configuration name="ChinaEpidemicApplicationTests.contextLoads" configurationId="JUnit" />
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 02m 25s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ChinaEpidemicApplicationTests_contextLoads - 2020.03.13 at 22h 06m 34s.xml">
-      <configuration name="ChinaEpidemicApplicationTests.contextLoads" configurationId="JUnit" />
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 02m 50s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ChinaEpidemicApplicationTests_contextLoads - 2020.03.13 at 22h 09m 29s.xml">
-      <configuration name="ChinaEpidemicApplicationTests.contextLoads" configurationId="JUnit" />
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 05m 46s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ChinaEpidemicApplicationTests_jedisResponse - 2020.03.13 at 22h 29m 12s.xml">
-      <configuration name="ChinaEpidemicApplicationTests.jedisResponse" configurationId="JUnit" />
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 06m 24s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ChinaEpidemicApplicationTests_jedisResponse - 2020.03.13 at 22h 29m 53s.xml">
-      <configuration name="ChinaEpidemicApplicationTests.jedisResponse" configurationId="JUnit" />
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 07m 04s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ChinaEpidemicApplicationTests_jedisResponse - 2020.03.13 at 22h 30m 51s.xml">
-      <configuration name="ChinaEpidemicApplicationTests.jedisResponse" configurationId="JUnit" />
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 08m 45s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 09m 06s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 16h 11m 33s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ChinaEpidemicApplicationTests_timeOut - 2020.03.14 at 16h 19m 11s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ChinaEpidemicApplicationTests_timeTest - 2020.03.14 at 21h 47m 44s.xml">
+      <configuration name="ChinaEpidemicApplicationTests.timeTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32581000" />
+    <option name="totallyTimeSpent" value="59333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1709531" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -514,8 +585,9 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Duplicate detector" weight="0.3295082" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.31260228" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.30983606" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.04918033" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.42295083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -541,7 +613,7 @@
       <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24054463" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.022692889" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -549,21 +621,22 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.31260228" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.04918033" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.42295083" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3295082" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.3295082" />
+      <window_info anchor="bottom" id="Duplicate detector" order="0" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.30983606" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.04918033" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.42295083" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Spring" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3295082" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="15" weight="0.3295082" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -598,20 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#274#275#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
-            <element signature="e#413#414#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
@@ -619,13 +678,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/dist/front_end.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -639,13 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/dist/back_end.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret column="684" selection-start-column="684" selection-end-column="684" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pojo/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -653,26 +699,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/BroadcastRedis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/BroadcastRedis.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/JedisUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -687,16 +714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1081">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -767,26 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/BroadcastController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="58" column="88" lean-forward="true" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/BroadcastService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="99" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
@@ -797,17 +794,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/BroadcastService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="207">
+          <caret line="11" column="99" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="99" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BroadcastMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/BroadcastController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="58" column="88" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/front_desk.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pojo/Local.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding>
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#614#615#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#712#713#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -821,20 +869,147 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="60" column="65" lean-forward="true" selection-start-line="60" selection-start-column="65" selection-end-line="60" selection-end-column="65" />
+        <state relative-caret-position="529">
+          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/back_end.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/dist/back_end.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="23">
+          <caret column="684" selection-start-column="684" selection-end-column="684" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pojo/ProvinceItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="33" column="54" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/backstage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pojo/ProvinceItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding>
+            <element signature="e#2249#2250#0" expanded="true" />
+            <element signature="e#2275#2276#0" expanded="true" />
+            <element signature="e#2313#2314#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pojo/Province.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/ProvinceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="49" column="45" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#705#706#0" expanded="true" />
+            <element signature="e#742#743#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="25" column="79" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="25" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/CityMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="19" column="51" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/ProvinceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/ProvinceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="93" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="87" column="32" lean-forward="true" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

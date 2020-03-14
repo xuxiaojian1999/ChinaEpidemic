@@ -10,10 +10,10 @@ public class IndexController {
 //    跳转到后台界面
     @RequestMapping("/backEnd")
     public String toBackEnd(){
-        return "back_end.html";
+        return "backstage.html";
     }
     @RequestMapping("/index")
     public String toFrontEnd(){
-        return "front_end.html";
+        return "front_desk.html";
     }
 }

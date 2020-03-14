@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @SpringBootTest
@@ -49,6 +50,24 @@ class ChinaEpidemicApplicationTests {
         String  str=jedis.set("123","23" );
 //        ok / 1
         logger.info(str);
+    }
+    @Test
+    void timeTest(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1); //得到前一天
+        Date date = calendar.getTime();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(df.format(date));
+
+    }
+    @Test
+    void timeOut(){
+        int i=0;
+        while (true){
+            logger.info(""+i);
+            if (i==5)break;
+            i++;
+        }
     }
 
 }

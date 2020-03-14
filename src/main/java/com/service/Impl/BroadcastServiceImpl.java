@@ -21,7 +21,7 @@ public class BroadcastServiceImpl implements BroadcastService {
 //    链接redis
     @Autowired
     private RedisUtils redisUtils;
-    //默认key
+    //默认redis中的key
     private String key="broadcast_data";
     @Override
     public List<Broadcast> findAllBroadcast() {
