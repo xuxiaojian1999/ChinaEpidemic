@@ -6,7 +6,7 @@
         SELECT name,identity FROM user where account=#{account} and password=#{password}
     </select>
     <update id="updateCheckCode">
-        UPDATE user SET check_code =#{checkCode}
+        UPDATE user SET check_code =#{checkCode} WHERE account=#{account}
     </update>
     <select id="selectCheckCodeAndNameByAI" resultType="User">
         SELECT name,check_code FROM user where account=#{account} and identity=#{identity}

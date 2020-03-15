@@ -269,6 +269,7 @@ public class ProvinceServiceImpl implements ProvinceService {
                 //更新每日省份数据
                 provinceMapper.insertProvinceByDayAndProvince(confirm,suspect,heal,dead,getDate(updateIndex),item.getProvince());
                 //d将每日省份数据更新到省份数据中
+                //原来的省份数据加上新增的省份数据
                 provinceMapper.updateProvinceByProvince(confirm+item.getConfirm(),suspect+item.getSuspect()
                         ,heal+item.getHeal(),dead+item.getDead(),getDate(updateIndex),item.getProvince());
             flag=true;

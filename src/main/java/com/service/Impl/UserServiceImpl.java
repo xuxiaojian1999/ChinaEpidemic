@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
                 //user中只有identity,name
                 //在数据库更新随机码
                 //随机码在前端已经设置，无论数据库中是否设置成功，都要直接返回
-               userMapper.updateCheckCode(checkCode);
+               userMapper.updateCheckCode(checkCode,account);
                return user;
         }
     }
@@ -34,13 +34,13 @@ public class UserServiceImpl implements UserService {
     public String checkCode(String account, Integer identity, String checkCode) {
         User user= userMapper.selectCheckCodeAndNameByAI(account,identity);
         String dbCode=user.getCheckCode();
-        String name=user.getName();
         if (dbCode==null){
             //只要查询出来的dbCode为空，就直接返回空
             return null;
         }else if (dbCode.equals(checkCode)){
             //当dbCode与前端传过来的checkCode一致时
             //将查询出的name返回
+            String name=user.getName();
             return name;
         }
         return null;

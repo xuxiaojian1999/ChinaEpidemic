@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     User selectUserByAP(@Param("account")String account, @Param("password")String password);
-    Integer updateCheckCode(@Param("checkCode")String checkCode);
+    Integer updateCheckCode(@Param("checkCode")String checkCode,@Param("account") String account);
     User selectCheckCodeAndNameByAI(@Param("account")String account,@Param("identity")Integer identity);
     List<User> selectAllUser();
     Integer updateIdentity(@Param("id") Integer id,@Param("modifier") String modifier);
