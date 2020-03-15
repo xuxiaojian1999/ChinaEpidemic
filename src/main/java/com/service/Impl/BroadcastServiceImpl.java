@@ -36,15 +36,16 @@ public class BroadcastServiceImpl implements BroadcastService {
 //            不存在
 //            先从mysql读取
             list=broadcastMapper.selectAllBroadcast();
-            updateRedis();
+            updateRedis(list);
         }
         return list;
     }
     //更新redis
-    private void updateRedis(){
+    private void updateRedis(List<Broadcast> list){
         //先从mysql取出
-        List<Broadcast> list=broadcastMapper.selectAllBroadcast();
-        if (list!=null){
+        if (list==null){
+            list=broadcastMapper.selectAllBroadcast();
+        }else {
             //当list不为空
             //将list转换为json字符串
             String value= JSON.toJSONString(list);
@@ -65,7 +66,7 @@ public class BroadcastServiceImpl implements BroadcastService {
         if (broadcastMapper.updateReleaseTimeById(id,modifier)==1){
             //删除成功
             //更新新redis
-            updateRedis();
+            updateRedis(null);
             flag=true;
         }
         return flag;
@@ -78,7 +79,7 @@ public class BroadcastServiceImpl implements BroadcastService {
         if (broadcastMapper.updateBroadcast(id,digest,source,title,releaseTime,modifier)==1){
             //修改成功
             //更新redis
-            updateRedis();
+            updateRedis(null);
             flag=true;
         }
         return flag;
@@ -90,7 +91,7 @@ public class BroadcastServiceImpl implements BroadcastService {
         if (broadcastMapper.insertBroadcast(digest,source,title,releaseTime,founder)==1){
             //新增成功
             //更新redis
-            updateRedis();
+            updateRedis(null);
             flag=true;
         }
         return flag;
