@@ -17,6 +17,12 @@ public class ProvinceItem {
     public ProvinceItem() {
     }
 
+    public ProvinceItem(Integer confirm, Integer suspect, Integer heal, Integer dead) {
+        this.confirm = confirm;
+        this.suspect = suspect;
+        this.heal = heal;
+        this.dead = dead;
+    }
 
     public ProvinceItem(Integer id, String province, String city, Integer confirm, Integer suspect, Integer heal, Integer dead, String lastUpdateTime, String modifier, String day) {
         this.id = id;

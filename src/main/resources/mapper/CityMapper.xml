@@ -20,6 +20,16 @@
         WHERE city=#{city} AND province=#{province}
     </update>
     <select id="selectOneProvince" resultType="ProvinceItem">
-        SELECT * FROM ecery_city_data WHERE province=#{province} AND day=#{day}
+        SELECT * FROM everyday_city_data WHERE province=#{province} AND day=#{day}
     </select>
+    <select id="selectCity" resultType="ProvinceItem">
+        SELECT city FROM city_data
+    </select>
+    <insert id="setNewCity">
+        INSERT INTO everyday_city_data (province,city,comfirm,suspect,heal,dead,day)
+        VALUES
+        <foreach collection="localList" item="local" index="index" separator=",">
+            (local.province,local.city,0,0,0,0,#{day})
+        </foreach>
+    </insert>
 </mapper>

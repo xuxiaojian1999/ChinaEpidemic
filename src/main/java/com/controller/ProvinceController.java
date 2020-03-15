@@ -46,7 +46,6 @@ public class ProvinceController {
     }
     @RequestMapping("/updateProvince")
     public boolean updateProvince(){
-
         return provinceService.updateProvince();
     }
 }

@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         User user= userMapper.selectCheckCodeAndNameByAI(account,identity);
         String dbCode=user.getCheckCode();
         String name=user.getName();
-        if (dbCode==null&&dbCode.equals("")){
+        if (dbCode==null){
             //只要查询出来的dbCode为空，就直接返回空
             return null;
         }else if (dbCode.equals(checkCode)){

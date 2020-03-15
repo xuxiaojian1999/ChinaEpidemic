@@ -61,21 +61,26 @@ public class ProvinceServiceImpl implements ProvinceService {
         //查询今天的数据，查询结果存储在该类的变量中
         selectAllDate(day);
         //调用transProvinceList来获取数据库中的数据
-        return transProvinceList();
+        return transProvinceList(true);
     }
 
     @Override
     public boolean modifyCity(Integer id, String city, Integer confirm, Integer suspect, Integer heal, Integer dead, String modifier, String lastUpdateTime) {
         //获取今日的时间
         String day=getDate(0);
-        if (cityMapper.updateCityByIdAndCityAndDay(id,city,confirm,
-                suspect,heal,dead,modifier,lastUpdateTime,day)==1){
+        //在数据库中修改
+        Integer flag=cityMapper.updateCityByIdAndCityAndDay(id,city,confirm,
+                suspect,heal,dead,modifier,lastUpdateTime,day);
+        if (flag==1){
             //修改成功返回true
             return true;
         }
         return false;
     }
-    //更新数据，更新时间为当天，更新到redis的数据为前一天的day，everyday_city_data中的day为当天
+    //更新数据，更新时间为当天，更新到redis的数据为前一天的day，
+    //everyday_province_data,province_data,city_data,中的day为前一天
+    // everyday_city_data中的day为当天
+    //理论上每天只能更新一次
     @Override
     public boolean updateProvince() {
         boolean flag=false;
@@ -85,39 +90,42 @@ public class ProvinceServiceImpl implements ProvinceService {
         Integer index=-1;
         //将cityTodayList置空
         cityTodayList=null;
-        while (true&&index>-10){
-            //一直循环直到查询数据,仅查询十次
-            String time=getDate(index);
-            cityTodayList=cityMapper.selectAllByDay(time);
-            index--;
-            //当查询出来的数据都不为空时，跳出循环
-            if (cityTodayList!=null)break;
-        }
+        //更新没必要更新几天前的数据，只对前一天的数据进行更新
+        String time=getDate(index);
+        cityTodayList=cityMapper.selectAllByDay(time);
         while (true){
             if (cityTodayList!=null){
                 updateIndex=index;
-                //当cityTodayList不为null，排除查询了前10天都没有数据
+                //当cityTodayList不为null
                 //需要用到事务
                 //b将每日城市数据更新到每日省份数据和城市数据中
                 //c将每日省份数据更新到省份数据中
                 //调用updateEPPCByEC对以上进行更新
                 if (updateEPPCByEC())break;
                 //更新成功退出循环
+            }else {
+                break;
             }//当cityTodayList为null时，不进行处理
         }
         //2.更新redis中的数据
-        //需要用到事务
+        //没有用到事务
         //a更新chinaData
         //b更新provincelist
         //c更新allprovincelist
-
-        //3.更新每日城市数据（新建当天的数据，用于更新）
+        while (true){
+            if (updateRedis())break;
+        }
+        //3.更新每日城市数据（新建当天的城市数据，用于更新）
         //需要用到事务
-
+        while (true){
+            if (updateEverydayCity()){
+                //新增成功后，将flag置为true，退出循环
+                flag=true;
+                break;
+            }
+        }
         return flag;
     }
-
-
     //获取日期，
     // 参数 0为当日，-1为前一天
     //返回值字符串
@@ -138,7 +146,7 @@ public class ProvinceServiceImpl implements ProvinceService {
             provinceTotalList=provinceMapper.selectAll();
             cityTotalList=cityMapper.selectAll();
     }
-    private List<Province> transProvinceList(){
+    private List<Province> transProvinceList(boolean cityIf){
         //用来装取全部的数据
         List<Province> list=new ArrayList<>();
         //进行格式转换
@@ -169,34 +177,38 @@ public class ProvinceServiceImpl implements ProvinceService {
                     break;
                 }
             }
-            //province的 city
-            //用来装取city的数据
-            List<Province> city=new ArrayList<>();
-            for (ProvinceItem item : cityTotalList){
-                if (item.getProvince().equals(totalItem.getProvince())){
-                    //当该city属于该province，进行操作
-                    Province cityItem=new Province();
-                    //city的 local
-                    Local cityLocal=new Local();
-                    cityLocal.setCity(item.getCity());
-                    cityLocal.setProvince(item.getProvince());
-                    //city的 totalData
-                    ProvinceItem cityTotalData=transItemFromForeItem(item);
-                    //放入cityItem
-                    cityItem.setTotalData(cityTotalData);
-                    //city的 todayData
-                    for(ProvinceItem todayItem : cityTodayList){
-                        //整个循环只有一次操作
-                        if (todayItem.getCity().equals(item.getCity())){
-                            ProvinceItem cityTodayData=transItemFromForeItem(todayItem);
-                            //放入cityItem
-                            cityItem.setTodayData(cityTodayData);
-                            break;
+            if (cityIf){
+                //province的 city
+                //用来装取city的数据
+                List<Province> city=new ArrayList<>();
+                for (ProvinceItem item : cityTotalList){
+                    if (item.getProvince().equals(totalItem.getProvince())){
+                        //当该city属于该province，进行操作
+                        Province cityItem=new Province();
+                        //city的 local
+                        Local cityLocal=new Local();
+                        cityLocal.setCity(item.getCity());
+                        cityLocal.setProvince(item.getProvince());
+                        //city的 totalData
+                        ProvinceItem cityTotalData=transItemFromForeItem(item);
+                        //放入cityItem
+                        cityItem.setTotalData(cityTotalData);
+                        //city的 todayData
+                        for(ProvinceItem todayItem : cityTodayList){
+                            //整个循环只有一次操作
+                            if (todayItem.getCity().equals(item.getCity())){
+                                ProvinceItem cityTodayData=transItemFromForeItem(todayItem);
+                                //放入cityItem
+                                cityItem.setTodayData(cityTodayData);
+                                break;
+                            }
                         }
+                        //将转换好的每个城市的数据接入到城市list中
+                        city.add(cityItem);
                     }
-
                 }
-
+                //给province设置city
+                province.setCity(city);
             }
             list.add(province);
         }
@@ -254,6 +266,7 @@ public class ProvinceServiceImpl implements ProvinceService {
                 heal=+i.getHeal();
                 dead=+i.getDead();
             }
+                //更新每日省份数据
                 provinceMapper.insertProvinceByDayAndProvince(confirm,suspect,heal,dead,getDate(updateIndex),item.getProvince());
                 //d将每日省份数据更新到省份数据中
                 provinceMapper.updateProvinceByProvince(confirm+item.getConfirm(),suspect+item.getSuspect()
@@ -261,5 +274,78 @@ public class ProvinceServiceImpl implements ProvinceService {
             flag=true;
         }
         return flag;
+    }
+    //更新redis中的数据,用这个方法时，province和city的total和today数据必须更新完成
+    @Transactional
+    protected boolean updateRedis(){
+        //没有用到事务
+        Integer selectIndex=-1;
+        //先查询前一天的数据
+        selectAllDate(getDate(selectIndex));
+        //a更新chinaData
+        Local local=new Local();
+        local.setCountry("中国");
+        String lastUpdateTime=getDate(selectIndex);
+        //total初始化
+        Integer totalConfirm=0;
+        Integer totalSuspect=0;
+        Integer totalHeal=0;
+        Integer totalDead=0;
+        //today初始化
+        Integer todayConfirm=0;
+        Integer todaySuspect=0;
+        Integer todayHeal=0;
+        Integer todayDead=0;
+        //使用省份的数据对chinaData进行更新
+        ProvinceItem totalData=countProvinceItem(totalConfirm, totalSuspect, totalHeal, totalDead, provinceTotalList);
+        ProvinceItem todayData = countProvinceItem(todayConfirm, todaySuspect, todayHeal, todayDead, provinceTodayList);
+        //创建chinaData
+        Province chinaData=new Province();
+        chinaData.setLocal(local);
+        chinaData.setLastUpdateTime(lastUpdateTime);
+        chinaData.setTotalData(totalData);
+        chinaData.setTodayData(todayData);
+        String flag1=redisUtils.set("chinaData",JSONArray.toJSONString(chinaData));
+        //b更新provincelist
+        List<Province> list=transProvinceList(false);
+        String flag2=redisUtils.set("provinceList",JSONArray.toJSONString(list));
+        //c更新allprovincelist
+        list=transProvinceList(true);
+        String flag3=redisUtils.set("allProvinceList",JSONArray.toJSONString(list));
+        //全部更新成功返回true
+        if (flag1.equals("ok")&&flag2.equals("ok")&&flag3.equals("ok"))return true;
+        else return false;
+
+    }
+    //将四个初始化的数据和要循环计算的list传入方法
+    //返回一个计算完的对象
+    private ProvinceItem countProvinceItem(Integer todayConfirm, Integer todaySuspect, Integer todayHeal, Integer todayDead, List<ProvinceItem> provinceTodayList) {
+        for (ProvinceItem todayItem: provinceTodayList) {
+            todayConfirm=+todayItem.getConfirm();
+            todaySuspect=+todayItem.getSuspect();
+            todayHeal=+todayItem.getHeal();
+            todayDead=+todayItem.getDead();
+        }
+        ProvinceItem todayData=new ProvinceItem(todayConfirm,todaySuspect,todayHeal,todayDead);
+        return todayData;
+    }
+    //更新everyday_city_data
+    @Transactional
+    protected boolean updateEverydayCity(){
+        String totay=getDate(0);
+        //查询数据库中的城市名称，在total中查询
+        List<ProvinceItem> cityList=cityMapper.selectCity();
+        //province
+        List<Local> cpName=new ArrayList<>();
+        for (ProvinceItem item : cityList) {
+            //只是使用数据表中的城市名称
+            cpName.add(new Local("",item.getProvince(),item.getCity()));
+        }
+        String day=getDate(0);
+        Integer flag= cityMapper.setNewCity(cpName,day);
+            //新增成功返回true
+            if(flag>=1)return true;
+            else return false;
+
     }
 }
