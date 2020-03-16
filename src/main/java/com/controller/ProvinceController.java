@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//province   getNewList
+// 创建一个更见精简的provinceItem类
+
 @RestController
 @RequestMapping("/province")
 public class ProvinceController {

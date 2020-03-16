@@ -13,6 +13,10 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
+
 @Service("BroadcastService")
 public class BroadcastServiceImpl implements BroadcastService {
 //    链接mysql
@@ -43,10 +47,12 @@ public class BroadcastServiceImpl implements BroadcastService {
     //更新redis
     private void updateRedis(List<Broadcast> list){
         //先从mysql取出
+        //当list为空
         if (list==null){
             list=broadcastMapper.selectAllBroadcast();
-        }else {
-            //当list不为空
+        }
+
+
             //将list转换为json字符串
             String value= JSON.toJSONString(list);
             String result="";
@@ -56,7 +62,7 @@ public class BroadcastServiceImpl implements BroadcastService {
                 result=redisUtils.set(key,value);
                 i++;
             }
-        }
+
     }
     @Override
     public boolean deleteBroadcast(Integer id, String modifier) {

@@ -57,11 +57,12 @@ public class ProvinceServiceImpl implements ProvinceService {
     @Override
     public List<Province> getNewList() {
         //获取今天的时间
-        String day=getDate(0);
+        String day=getDate(-1);
         //查询今天的数据，查询结果存储在该类的变量中
         selectAllDate(day);
         //调用transProvinceList来获取数据库中的数据
-        return transProvinceList(true);
+        List<Province> list =transProvinceList(true);
+        return list;
     }
 
     @Override
@@ -169,14 +170,15 @@ public class ProvinceServiceImpl implements ProvinceService {
             for (ProvinceItem todayItem: provinceTodayList) {
                 //整个循环只有一次操作
                 if (todayItem.getProvince().equals(totalItem.getProvince())){
-                    //当todayItem属于totalItem中的省份
-                    ProvinceItem todayData=transItemFromForeItem(totalItem);
+                    //当todayItem属于totalItem中的省份,将todayItem转化为todayData
+                    ProvinceItem todayData=transItemFromForeItem(todayItem);
                     //将转换完的todayData放入province
                     province.setTodayData(todayData);
                     //处理完后退出
                     break;
                 }
             }
+            //cityIf为true,则加上city
             if (cityIf){
                 //province的 city
                 //用来装取city的数据
@@ -184,11 +186,13 @@ public class ProvinceServiceImpl implements ProvinceService {
                 for (ProvinceItem item : cityTotalList){
                     if (item.getProvince().equals(totalItem.getProvince())){
                         //当该city属于该province，进行操作
+                        //每个城市的数据
                         Province cityItem=new Province();
                         //city的 local
                         Local cityLocal=new Local();
                         cityLocal.setCity(item.getCity());
                         cityLocal.setProvince(item.getProvince());
+                        cityItem.setLocal(cityLocal);
                         //city的 totalData
                         ProvinceItem cityTotalData=transItemFromForeItem(item);
                         //放入cityItem
