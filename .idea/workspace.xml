@@ -5,25 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78cab6ce-097c-4691-adba-9df9a06c8919" name="Default Changelist" comment="配置完jedis">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pojo/SimplProvince.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dome.rar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/使用说明.doc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pojo/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pojo/Local.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pojo/Province.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pojo/Province.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pojo/ProvinceItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pojo/ProvinceItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/BroadcastServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/ProvinceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/ProvinceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CityMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/dist/backstage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dist/backstage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/dist/front_desk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dist/front_desk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/html/backstage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/html/backstage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/ChinaEpidemicApplicationTests.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/backstage.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="194">
-              <caret line="34" column="54" lean-forward="true" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+              <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -75,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="129" column="61" lean-forward="true" selection-start-line="129" selection-start-column="61" selection-end-line="129" selection-end-column="61" />
+            <state relative-caret-position="113">
+              <caret line="132" selection-start-line="132" selection-end-line="132" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,18 +82,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
               <caret line="29" column="32" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -139,11 +111,11 @@
       <find>getChinaDataFromRedis</find>
       <find>getListFromRedis</find>
       <find>selectOneProvince</find>
-      <find>updateCityByIdAndCityAndDay</find>
       <find>loginFlag</find>
       <find>selectOne</find>
       <find>updateEverydayCity</find>
       <find>updateEPPCByEC</find>
+      <find>updateCityByIdAndCityAndDay</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -386,7 +358,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1584463392487" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1584464346031" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="D:/Git/bin/git.exe" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -538,7 +510,7 @@
       <workItem from="1584338100660" duration="12000" />
       <workItem from="1584338447226" duration="322000" />
       <workItem from="1584339876084" duration="25829000" />
-      <workItem from="1584416189572" duration="36752000" />
+      <workItem from="1584416189572" duration="37582000" />
     </task>
     <task id="LOCAL-00001" summary="配置完jedis">
       <created>1584075742063</created>
@@ -590,11 +562,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139432000" />
+    <option name="totallyTimeSpent" value="140262000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24281392" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -606,7 +577,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.30983606" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13606557" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.13606557" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.04918033" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -681,15 +652,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java</url>
-          <line>130</line>
+          <line>368</line>
           <properties />
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java</url>
-          <line>132</line>
-          <properties />
-          <option name="timeStamp" value="29" />
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1119,13 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pojo/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -1172,16 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/ProvinceController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
@@ -1197,7 +1145,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/html/backstage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
-          <caret line="34" column="54" lean-forward="true" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
+          <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1211,10 +1159,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dao/CityMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/service/Impl/ProvinceServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="129" column="61" lean-forward="true" selection-start-line="129" selection-start-column="61" selection-end-line="129" selection-end-column="61" />
+        <state relative-caret-position="113">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
