@@ -1,19 +1,36 @@
 package com.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
 //用于传递给前端和存入redis
-public class Province {
+public class Province implements Serializable {
     private Local local;
-    private ProvinceItem todayData;
-    private ProvinceItem totalData;
+    private SimplProvince todayData;
+    private SimplProvince totalData;
     private String lastUpdateTime;
     private List<Province> city;
 
     public Province() {
     }
 
-    public Province(Local local, ProvinceItem todayData, ProvinceItem totalData, String lastUpdateTime, List<Province> city) {
+    public SimplProvince getTodayData() {
+        return todayData;
+    }
+
+    public void setTodayData(SimplProvince todayData) {
+        this.todayData = todayData;
+    }
+
+    public SimplProvince getTotalData() {
+        return totalData;
+    }
+
+    public void setTotalData(SimplProvince totalData) {
+        this.totalData = totalData;
+    }
+
+    public Province(Local local, SimplProvince todayData, SimplProvince totalData, String lastUpdateTime, List<Province> city) {
         this.local = local;
         this.todayData = todayData;
         this.totalData = totalData;
@@ -29,21 +46,7 @@ public class Province {
         this.local = local;
     }
 
-    public ProvinceItem getTodayData() {
-        return todayData;
-    }
 
-    public void setTodayData(ProvinceItem todayData) {
-        this.todayData = todayData;
-    }
-
-    public ProvinceItem getTotalData() {
-        return totalData;
-    }
-
-    public void setTotalData(ProvinceItem totalData) {
-        this.totalData = totalData;
-    }
 
     public String getLastUpdateTime() {
         return lastUpdateTime;

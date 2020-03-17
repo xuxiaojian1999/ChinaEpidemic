@@ -11,4 +11,5 @@ public interface ProvinceService {
     boolean modifyCity(Integer id,String city,Integer confirm,Integer suspect,Integer heal,Integer dead,
                        String modifier,String lastUpdateTime);
     boolean updateProvince();
+    Province getChinaDataFromRedis(String key);
 }

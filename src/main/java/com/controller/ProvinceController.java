@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//province   getNewList
-// 创建一个更见精简的provinceItem类
+//chinaData>provinceList
 
 @RestController
 @RequestMapping("/province")
@@ -26,7 +25,11 @@ public class ProvinceController {
         }
         return null;
     }
-
+    @RequestMapping("/getChinaData")
+    public Province getChinaData(){
+            //key是需要在redis中查询的key
+            return provinceService.getChinaDataFromRedis("chinaData");
+    }
     @RequestMapping("/getNewList")
     public List<Province> getNewList(){
         return provinceService.getNewList();
@@ -51,4 +54,6 @@ public class ProvinceController {
     public boolean updateProvince(){
         return provinceService.updateProvince();
     }
+//    @RequestMapping("getConfirmList")
+//    public
 }

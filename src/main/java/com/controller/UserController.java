@@ -74,7 +74,7 @@ public class UserController {
             String phone = user.getPhone();
             Integer identity = user.getIdentity();
             String modifier = user.getModifier();
-            return userService.modifierUser(id, account, password, name, phone, identity, modifier);
+            return userService.modifyUser(id, account, password, name, phone, identity, modifier);
         }
         return false;
     }

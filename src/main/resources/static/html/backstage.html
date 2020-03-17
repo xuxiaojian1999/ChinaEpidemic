@@ -10,7 +10,7 @@
     <div id="root">
         <div class="jumbotron text-center" style="margin-bottom:0" >
             <h1 class="display-4">疫情数据后台管理</h1>
-            <div class="row clearfix"  v-if='!loginFlage'>
+            <div class="row clearfix"  v-if='loginFlag'>
                 <div class="col-md-12 column">
                     <dl>
                         <dt>
@@ -32,7 +32,7 @@
             leave-active-class="animated flipOutX"
             :duration="{enter:1000,leave:1000}"
             mode="out-in">
-                <login @loginb="loginBack" v-if='!loginFlage'>
+                <login @loginb="loginBack" v-if='!loginFlag'>
                 </login>
                 <backstage v-else :user="user" @setloginflag="setLoginFlag"></backstage>
             </transition>

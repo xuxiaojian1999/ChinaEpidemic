@@ -65,12 +65,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean modifierUser(Integer id, String account, String password, String name, String phone, Integer identity, String modifier) {
-//        默认值为false
-        boolean flag=false;
+    public boolean modifyUser(Integer id, String account, String password, String name, String phone, Integer identity, String modifier) {
         if (userMapper.updateUserById(id,account,password,name,phone,identity,modifier)==1){
             //当返回值==1时，为数据库修改成功
-            flag=true;//true修改成功
+            return true;//true修改成功
         }
         return false;
     }

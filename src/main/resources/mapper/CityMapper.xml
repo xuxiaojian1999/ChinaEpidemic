@@ -8,28 +8,28 @@
     <select id="selectAll" resultType="ProvinceItem">
         SELECT * FROM city_data
     </select>
-    <select id="modifyCityByIdAndCityAndDay">
+    <update id="updateCityByIdAndCityAndDay">
         UPDATE everyday_city_data
         SET confirm=#{confirm},suspect=#{suspect},heal=#{heal},dead=#{dead},modifier=#{modifier},
         last_update_time=#{lastUpdateTime}
-        WHERE id=#{id} and city=#{city} AND day=#{day}
-    </select>
-    <update id="modifyCityByCityAndPro">
+        WHERE id=#{id} AND city=#{city} AND day=#{day}
+    </update>
+    <update id="updateCityByCityAndPro">
         UPDATE city_data
         SET confirm=#{confirm},suspect=#{suspect},heal=#{heal},dead=#{dead},last_update_time=#{lastUpdateTime}
         WHERE city=#{city} AND province=#{province}
     </update>
-    <select id="selectOneProvince" resultType="ProvinceItem">
+    <select id="selectOneCity" resultType="ProvinceItem">
         SELECT * FROM everyday_city_data WHERE province=#{province} AND day=#{day}
     </select>
     <select id="selectCity" resultType="ProvinceItem">
-        SELECT city FROM city_data
+        SELECT province,city FROM city_data
     </select>
     <insert id="setNewCity">
-        INSERT INTO everyday_city_data (province,city,comfirm,suspect,heal,dead,day)
+        INSERT INTO everyday_city_data (province,city,confirm,suspect,heal,dead,day)
         VALUES
         <foreach collection="localList" item="local" index="index" separator=",">
-            (local.province,local.city,0,0,0,0,#{day})
+            (#{local.province},#{local.city},0,0,0,0,#{day})
         </foreach>
     </insert>
 </mapper>

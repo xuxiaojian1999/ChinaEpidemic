@@ -11,6 +11,22 @@ public class User implements Serializable {
     private String checkCode;
     private Integer identity;
     private String founder;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", checkCode='" + checkCode + '\'' +
+                ", identity=" + identity +
+                ", founder='" + founder + '\'' +
+                ", modifier='" + modifier + '\'' +
+                '}';
+    }
+
     private String modifier;
 
     public User() {

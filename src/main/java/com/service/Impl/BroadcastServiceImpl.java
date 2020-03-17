@@ -51,8 +51,6 @@ public class BroadcastServiceImpl implements BroadcastService {
         if (list==null){
             list=broadcastMapper.selectAllBroadcast();
         }
-
-
             //将list转换为json字符串
             String value= JSON.toJSONString(list);
             String result="";

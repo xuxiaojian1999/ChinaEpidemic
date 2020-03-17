@@ -1,6 +1,8 @@
 package com.pojo;
 
-public class Local {
+import java.io.Serializable;
+
+public class Local implements Serializable {
     private String country;
     private String province;
     private String city;

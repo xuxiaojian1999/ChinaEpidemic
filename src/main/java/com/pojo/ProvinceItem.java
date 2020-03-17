@@ -1,8 +1,9 @@
 package com.pojo;
 
+import java.io.Serializable;
 import java.sql.Date;
 //用于接收前端传来和数据库查询出来的数据,用于province中的成员
-public class ProvinceItem {
+public class ProvinceItem implements Serializable {
     private Integer id;
     private String city;
     private String province;

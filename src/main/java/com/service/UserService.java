@@ -15,7 +15,7 @@ public interface UserService {
 //    删除user,删除成功返回true
     boolean deleteUserById(Integer id,String modifier);
 //    修改User，修改成功返回true
-    boolean modifierUser(Integer id,String account,String password,
+    boolean modifyUser(Integer id,String account,String password,
                          String name,String phone,Integer identity,String modifier);
 //      增加新的User
     boolean addUser(String account,String password,String name,
